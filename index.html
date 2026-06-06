@@ -250,12 +250,12 @@
   #topic.open .topic-back{ opacity:1; transition-delay:.4s; }
   .topic-back:hover{ border-color:var(--violet); color:var(--blanc); }
   .topic-num{ color:var(--violet); font-weight:700; letter-spacing:3px; font-size:13px; font-family:var(--font-accroche); }
-  .topic-title{ display:flex; align-items:center; gap:16px; font-size:clamp(28px,4.6vw,54px); font-weight:800; letter-spacing:-1.5px; margin:10px 0 22px; line-height:1.06; }
+  .topic-title{ display:block; font-size:clamp(28px,4.6vw,54px); font-weight:800; letter-spacing:-1.5px; margin:10px 0 22px; line-height:1.1; }
   .topic-title .accent{ color:var(--violet); font-family:var(--font-title); font-style:italic; font-weight:600; }
-  .topic-title .hi-vio{ color:var(--violet); margin-left:-0.1em; }
-  .topic-title::before{ content:""; flex:none; width:14px; height:14px; border-radius:50%;
+  .topic-title .hi-vio{ color:var(--violet); }
+  .topic-title::before{ content:""; display:inline-block; width:13px; height:13px; border-radius:50%; margin-right:14px; vertical-align:middle;
     background:var(--fluo); box-shadow:0 0 10px var(--fluo), 0 0 20px var(--fluo);
-    animation:dot-pulse 1.4s ease-in-out infinite; }
+    transform-origin:center; animation:dot-pulse 1.4s ease-in-out infinite; }
   .topic-title .accent{ color:var(--violet); }
   .topic-body{ color:var(--lavande); line-height:1.75; font-size:clamp(15px,1.5vw,18px); }
   .topic-body p{ margin-bottom:1.05em; text-align:justify; -webkit-hyphens:auto; hyphens:auto; }
