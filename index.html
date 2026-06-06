@@ -2,746 +2,743 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#09090F">
-<title>Sol·IA — L'agence qui construit vos agents IA sur-mesure</title>
-<meta name="description" content="Sol·IA conçoit l'agent IA sur-mesure qui prend en charge la tâche qui vous bouffe le plus de temps : téléphone, mails, réseaux sociaux, gestion de stock, tri courriers. Tous secteurs, tous métiers.">
-<meta name="author" content="Sol·IA — Victorine GRIFFANTI & Johann">
-<meta name="robots" content="index,follow">
-
-<!-- OpenGraph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sol·IA — L'agence qui construit vos agents IA sur-mesure">
-<meta property="og:description" content="On construit avec vous l'agent IA qui allège votre quotidien. Tous secteurs, tous métiers.">
-<meta property="og:locale" content="fr_FR">
-
-<!-- Favicon SVG (logo Sol·IA simplifié) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2309090F'/%3E%3Ctext x='50' y='62' font-family='Segoe UI,Arial,sans-serif' font-size='32' font-weight='800' text-anchor='middle' fill='%23f0edff'%3ESol%3Ctspan fill='%238B5CF6'%3E·IA%3C/tspan%3E%3C/text%3E%3C/svg%3E">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sol·IA — Prototype effet signature</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <style>
-/* =========================================
-   CHARTE GRAPHIQUE SOL·IA V3
-   Violet #8B5CF6 · Noir #09090F · Vert #10B981
-   Inter (corps) + Playfair Display italic (accents)
-   ========================================= */
-:root{
-  --noir:#09090F; --noir-soft:#13131F; --noir-mid:#1a0e2e;
-  --violet:#8B5CF6; --violet-fonce:#6030DC; --lavande:#a78bfa; --violet-pale:#ede9fe;
-  --vert:#10B981; --rouge:#ef4444; --ambre:#f59e0b;
-  --papier:#ffffff; --gris-fond:#f8f7fc; --gris-300:#d1d5db; --gris-500:#6b7280; --gris-700:#374151; --gris-900:#111827;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--papier);color:var(--gris-900);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img,svg{display:block;max-width:100%}
-a{color:inherit;text-decoration:none;transition:color .2s}
-.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  :root{
+    --noir:#09090F; --violet:#8B5CF6; --lavande:#a78bfa; --blanc:#f0edff;
+    --surface:#12122A; --bordure:#2A2A4A; --fluo:#2BFF88;
+    --font:'Segoe UI','Helvetica Neue',Arial,sans-serif;
+    --font-accroche:'Avenir Next','Futura','Century Gothic','Segoe UI',sans-serif;
+    --font-title:'Playfair Display','Georgia','Hoefler Text',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{background:var(--noir);color:var(--blanc);font-family:var(--font);}
+  body{overflow-x:hidden;}
 
-/* ========== NAVIGATION ========== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,15,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(167,139,250,0.12);transition:all .3s}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto}
-.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;color:#f0edff;letter-spacing:-0.4px}
-.nav-logo .dot{color:var(--violet);font-weight:800}
-.nav-logo-status{width:8px;height:8px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 0 rgba(16,185,129,0.7);animation:pulse 2s infinite;margin-left:6px}
-.nav-menu{display:flex;align-items:center;gap:32px;list-style:none}
-.nav-menu a{font-size:0.94rem;color:#c5c3d6;font-weight:500}
-.nav-menu a:hover{color:#fff}
-.nav-cta{background:linear-gradient(135deg,var(--violet),var(--violet-fonce));color:#fff!important;padding:9px 20px;border-radius:10px;font-weight:600;font-size:0.92rem;box-shadow:0 8px 24px -8px rgba(139,92,246,0.6);transition:transform .2s,box-shadow .2s}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px -8px rgba(139,92,246,0.75)}
-.nav-burger{display:none;background:none;border:none;color:#f0edff;cursor:pointer;padding:6px}
-.nav-burger svg{width:26px;height:26px}
+  /* ---------- HERO ---------- */
+  #hero{
+    position:fixed; inset:0; z-index:50;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:clamp(16px,3vh,34px);
+    background:var(--noir);
+    overflow:hidden; will-change:opacity;
+  }
+  .stage{
+    position:relative; flex:none;
+    width:min(46vmin,395px); height:min(46vmin,395px);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .halo{
+    position:absolute; top:50%; left:50%;
+    width:min(104vmin,940px); height:min(104vmin,940px);
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,
+      rgba(139,92,246,0.80) 0%,
+      rgba(139,92,246,0.50) 24%,
+      rgba(139,92,246,0.22) 46%,
+      rgba(139,92,246,0.07) 64%,
+      transparent 76%);
+    filter:blur(10px);
+    animation:halo-breath 3.4s ease-in-out infinite;
+    will-change:transform,opacity; z-index:0; pointer-events:none;
+  }
+  @keyframes halo-breath{
+    0%,100%{ opacity:.66; transform:translate(-50%,-50%) scale(.9);  }
+    50%    { opacity:1;   transform:translate(-50%,-50%) scale(1.24); }
+  }
 
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,0.7)}70%{box-shadow:0 0 0 10px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+  .logo-wrap{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    z-index:1; width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    transform-origin:center center; will-change:width,height;
+  }
+  .logo-wrap svg{width:100%;height:100%;display:block;overflow:visible;}
 
-/* ========== HERO ========== */
-.hero{background:radial-gradient(ellipse at 80% 10%,#5b21b6 0%,#1a0e2e 40%,#09090F 80%);color:#fff;padding:140px 0 110px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-300px;right:-200px;width:720px;height:720px;background:radial-gradient(circle,rgba(139,92,246,0.45),transparent 65%);pointer-events:none}
-.hero::after{content:"";position:absolute;bottom:-150px;left:-100px;width:520px;height:520px;background:radial-gradient(circle,rgba(96,48,220,0.32),transparent 65%);pointer-events:none}
-.hero-inner{position:relative;z-index:1;text-align:center}
-.solia-badge{width:240px;height:240px;margin:0 auto 36px;filter:drop-shadow(0 30px 60px rgba(139,92,246,0.6))}
-.solia-svg{width:100%;height:100%;display:block}
-.hero h1{font-weight:800;font-size:clamp(2rem,5.4vw,3.4rem);line-height:1.1;letter-spacing:-1.5px;margin:0 auto 22px;max-width:880px;color:#fff}
-.hero h1 .ac{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;background:linear-gradient(135deg,#e9d5ff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
-.baseline{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:clamp(1.1rem,2.4vw,1.45rem);color:var(--lavande);margin-bottom:32px;font-weight:500}
-.hero-sub{font-size:clamp(0.98rem,1.7vw,1.08rem);color:#c5c3d6;max-width:620px;margin:0 auto 38px;line-height:1.65}
-.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.cta-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#fff,#ede9fe);color:var(--violet-fonce);font-weight:700;padding:16px 32px;border-radius:12px;font-size:1.02rem;box-shadow:0 22px 44px -12px rgba(255,255,255,0.35);transition:transform .25s,box-shadow .25s}
-.cta-primary:hover{transform:translateY(-3px);box-shadow:0 28px 56px -12px rgba(255,255,255,0.45)}
-.cta-secondary{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);color:#ede9fe;font-weight:600;padding:16px 28px;border-radius:12px;font-size:1.02rem;border:1px solid rgba(167,139,250,0.35);backdrop-filter:blur(8px);transition:all .25s}
-.cta-secondary:hover{background:rgba(255,255,255,0.1);border-color:var(--lavande)}
-.cta-primary svg,.cta-secondary svg{width:18px;height:18px}
-.reco-badge{display:inline-flex;align-items:center;gap:12px;padding:11px 22px;background:rgba(255,255,255,0.06);border:1px solid rgba(167,139,250,0.42);border-radius:999px;font-size:0.9rem;color:#ede9fe;font-weight:500;backdrop-filter:blur(8px);margin-bottom:28px}
-.reco-dot{width:9px;height:9px;border-radius:50%;background:var(--vert);box-shadow:0 0 0 0 rgba(16,185,129,0.7);animation:pulse 2s infinite}
+  /* pastille AGENCE IA + phrase, juste sous le cercle */
+  .baseline{
+    position:relative; z-index:2; padding:0 24px;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+    text-align:center; will-change:opacity;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:var(--font-accroche);
+    font-size:12px; letter-spacing:6px; color:var(--lavande); font-weight:500;
+    border:1px solid rgba(139,92,246,0.5); border-radius:26px;
+    padding:7px 16px; background:rgba(139,92,246,0.10);
+  }
+  .eyebrow .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--fluo);
+    box-shadow:0 0 8px var(--fluo),0 0 16px var(--fluo);
+    animation:dot-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes dot-pulse{
+    0%,100%{ transform:scale(1);    opacity:1;  box-shadow:0 0 6px var(--fluo),0 0 12px var(--fluo); }
+    50%    { transform:scale(1.55); opacity:.7; box-shadow:0 0 12px var(--fluo),0 0 24px var(--fluo); }
+  }
+  .baseline p.phrase{
+    font-family:'Optima','Avenir Next','Gill Sans',var(--font);
+    font-size:clamp(17px,2.2vw,28px); font-weight:400; letter-spacing:.3px;
+    line-height:1.34; margin:0; color:var(--blanc);
+  }
+  .baseline p.phrase .accent{
+    color:var(--violet);
+    font-family:'Snell Roundhand','Apple Chancery','Brush Script MT',cursive;
+    font-weight:500; font-style:normal; font-size:1.3em; letter-spacing:0;
+    padding:0 .08em;
+  }
 
-/* ========== SECTIONS ========== */
-section{padding:96px 0;position:relative;scroll-margin-top:80px}
-section.dark{background:radial-gradient(ellipse at top,#13131F,#09090F 70%);color:#e8e6f0}
-section.soft{background:var(--gris-fond)}
-.eyebrow{display:inline-block;font-size:0.74rem;text-transform:uppercase;letter-spacing:2.6px;color:var(--violet);font-weight:700;margin-bottom:18px;padding:7px 16px;background:rgba(139,92,246,0.1);border-radius:999px;border:1px solid rgba(139,92,246,0.2)}
-section.dark .eyebrow{color:var(--lavande);background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.25)}
-h2{font-weight:800;font-size:clamp(1.75rem,4vw,2.5rem);line-height:1.15;letter-spacing:-0.6px;margin-bottom:20px;max-width:780px;color:var(--noir)}
-section.dark h2{color:#fff}
-h2 .it{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;background:linear-gradient(135deg,var(--violet),var(--lavande));-webkit-background-clip:text;background-clip:text;color:transparent}
-section.dark h2 .it{background:linear-gradient(135deg,var(--lavande),#e9d5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{font-size:clamp(1rem,1.9vw,1.15rem);color:var(--gris-700);max-width:720px;margin-bottom:36px;line-height:1.7}
-section.dark .lead{color:#c5c3d6}
+  .scroll-hint{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    z-index:3; text-align:center; color:var(--lavande); font-size:12px;
+    letter-spacing:3px; font-family:var(--font-accroche); will-change:opacity;
+  }
+  .scroll-hint .chev{
+    display:block; margin:9px auto 0; width:16px;height:16px;
+    border-right:2px solid var(--violet); border-bottom:2px solid var(--violet);
+    transform:rotate(45deg); animation:bob 1.6s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(45deg);}50%{transform:translateY(7px) rotate(45deg);}}
 
-/* ========== QUI SOMMES-NOUS ========== */
-.qui-grid{display:grid;grid-template-columns:1fr;gap:36px;margin-top:46px}
-@media(min-width:820px){.qui-grid{grid-template-columns:1.2fr 1fr;gap:50px;align-items:start}}
-.qui-text p{margin-bottom:18px;color:var(--gris-700);font-size:1.02rem;line-height:1.7}
-.qui-text strong{color:var(--noir)}
-.qui-quote{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.2rem;color:var(--violet-fonce);padding:24px 28px;background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(167,139,250,0.04));border-left:3px solid var(--violet);border-radius:12px;margin:24px 0;line-height:1.55}
-.qui-card{background:linear-gradient(135deg,#13131F,#09090F);color:#fff;border-radius:20px;padding:34px 30px;border:1px solid rgba(167,139,250,0.22);box-shadow:0 24px 50px -16px rgba(0,0,0,0.5)}
-.qui-card h4{font-size:0.76rem;text-transform:uppercase;letter-spacing:2.2px;color:var(--lavande);font-weight:700;margin-bottom:20px}
-.qui-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:0.95rem;color:#ede9fe;line-height:1.55}
-.qui-row:last-child{border-bottom:none}
-.qui-row .ic{flex:0 0 24px;width:24px;height:24px;color:var(--vert);display:flex;align-items:center;justify-content:center;margin-top:1px}
-.qui-row .ic svg{width:18px;height:18px}
-.qui-row strong{color:#fff;font-weight:700;margin-right:6px}
+  #zoom-zone{height:220vh;}
 
-/* ========== SOLUTIONS ========== */
-.sur-mesure-headline{margin-top:8px;padding:36px 38px;background:linear-gradient(135deg,rgba(139,92,246,0.14) 0%,rgba(167,139,250,0.04) 100%);border:1px solid rgba(167,139,250,0.35);border-radius:20px;text-align:center;position:relative;overflow:hidden;margin-bottom:46px}
-.sur-mesure-headline::before{content:"";position:absolute;top:-50%;left:-20%;width:140%;height:200%;background:radial-gradient(circle,rgba(139,92,246,0.18),transparent 50%);pointer-events:none}
-.sur-mesure-headline p{font-size:1.12rem;color:#ede9fe;line-height:1.7;max-width:760px;margin:0 auto;font-weight:500;position:relative}
-.sur-mesure-headline strong{color:#fff;font-weight:700}
+  /* ---------- CONTENU ---------- */
+  #content{position:relative; z-index:10; background:var(--noir);}
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 30px; opacity:0; pointer-events:none;
+    transition:opacity .4s ease;
+    background:linear-gradient(var(--noir),rgba(9,9,15,0));
+  }
+  .topbar .brand{font-weight:800;letter-spacing:-1px;font-size:20px;}
+  .topbar .brand .accent{color:var(--violet);}
+  .topbar a{color:var(--lavande);text-decoration:none;font-size:14px;letter-spacing:1px;}
 
-.solutions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.solu-card{padding:28px 26px;background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(167,139,250,0.22);border-radius:18px;transition:all .3s ease;position:relative;overflow:hidden}
-.solu-card.featured{border:1.5px solid var(--violet);background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(96,48,220,0.05))}
-.solu-card.featured::after{content:"En production";position:absolute;top:14px;right:14px;font-size:0.68rem;text-transform:uppercase;letter-spacing:1.3px;color:var(--vert);font-weight:700;padding:4px 9px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);border-radius:999px}
-.solu-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--violet),var(--lavande));transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
-.solu-card:hover{transform:translateY(-4px);border-color:var(--violet);box-shadow:0 20px 44px -12px rgba(139,92,246,0.3)}
-.solu-card:hover::before{transform:scaleX(1)}
-.solu-card .ic{width:48px;height:48px;color:#fff;margin-bottom:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--violet),var(--violet-fonce));border-radius:13px;box-shadow:0 10px 24px -6px rgba(139,92,246,0.5)}
-.solu-card .ic svg{width:24px;height:24px}
-.solu-card h4{font-size:1.08rem;font-weight:700;margin-bottom:10px;color:#fff}
-.solu-card p{font-size:0.92rem;color:#b8b5cc;line-height:1.6}
+  .qsolia{
+    position:relative; overflow:hidden;
+    min-height:100vh; padding:96px 24px 60px;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  }
+  .qsolia .section-eyebrow{
+    color:var(--lavande); letter-spacing:6px; font-size:13px; text-transform:uppercase;
+    margin-bottom:8px; text-align:center; font-family:var(--font-accroche);
+  }
+  .qsolia h2{
+    text-align:center; font-size:clamp(24px,3.6vw,42px); font-weight:800;
+    letter-spacing:-1.5px; margin-bottom:4px;
+  }
+  .qsolia h2 .accent, .contact-section h2 .accent, .tarif-lead .accent{
+    color:var(--violet); font-family:var(--font-title); font-style:italic; font-weight:600; }
+  .qsolia .lead{
+    text-align:center; color:var(--lavande); max-width:50ch; margin:0 auto;
+    font-size:clamp(13px,1.4vw,16px); line-height:1.6;
+  }
 
-/* ========== ÉTUDE CAS VOLX ========== */
-.volx-hero{display:grid;grid-template-columns:1fr;gap:36px;margin-top:46px}
-@media(min-width:820px){.volx-hero{grid-template-columns:1.15fr 1fr;gap:50px;align-items:start}}
-.volx-text p{margin-bottom:20px;color:var(--gris-700);font-size:1.02rem;line-height:1.7}
-.volx-text strong{color:var(--noir)}
-.volx-quote{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.18rem;color:var(--violet-fonce);padding:22px 26px;background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(167,139,250,0.04));border-left:3px solid var(--violet);border-radius:12px;margin:22px 0;line-height:1.55}
-.volx-quote .signe{display:block;margin-top:12px;font-family:'Inter',sans-serif;font-style:normal;font-size:0.86rem;color:var(--gris-500);font-weight:600;letter-spacing:0.5px}
-.volx-stats{background:linear-gradient(135deg,#13131F,#09090F);color:#fff;border-radius:20px;padding:32px 28px;border:1px solid rgba(167,139,250,0.22);box-shadow:0 24px 50px -16px rgba(0,0,0,0.5)}
-.volx-stats h4{font-size:0.76rem;text-transform:uppercase;letter-spacing:2.2px;color:var(--lavande);font-weight:700;margin-bottom:22px}
-.volx-stat{padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
-.volx-stat:last-child{border-bottom:none;padding-bottom:0}
-.volx-stat .num{font-size:1.65rem;font-weight:800;background:linear-gradient(135deg,#fff,#e9d5ff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:6px;letter-spacing:-0.6px}
-.volx-stat .lbl{font-size:0.88rem;color:#b8b5cc;line-height:1.5}
+  /* section contact + clôture mise en avant */
+  .contact-section{ position:relative; z-index:10; max-width:720px; margin:0 auto; padding:78px 24px 20px; }
+  .contact-section .section-eyebrow{ color:var(--lavande); letter-spacing:6px; font-size:13px; text-transform:uppercase; font-family:var(--font-accroche); text-align:center; margin-bottom:8px; }
+  .contact-section h2{ text-align:center; font-size:clamp(24px,3.6vw,42px); font-weight:800; letter-spacing:-1.5px; margin-bottom:10px; }
+  .contact-section h2 .accent{ color:var(--violet); }
+  .contact-section .lead{ text-align:center; color:var(--lavande); max-width:60ch; margin:0 auto 26px; line-height:1.6; font-size:clamp(14px,1.5vw,17px); }
+  .closing{ position:relative; z-index:10; opacity:1; text-align:center; padding:64px 24px 90px; border-top:1px solid var(--bordure); }
+  .closing .closing-phrase{ font-family:var(--font); font-style:normal; font-size:clamp(26px,5vw,52px); font-weight:800; letter-spacing:-1px; color:#ffffff; line-height:1.2; }
+  .closing .closing-phrase .accent{ color:var(--violet); font-family:var(--font-title); font-style:italic; font-weight:600; animation:violetpulse 1.8s ease-in-out infinite; }
+  @keyframes violetpulse{ 0%,100%{ opacity:.85; text-shadow:0 0 8px rgba(139,92,246,0.35); } 50%{ opacity:1; text-shadow:0 0 24px rgba(139,92,246,0.9); } }
+  .closing .closing-sub{ color:var(--lavande); margin-top:14px; font-size:clamp(13px,1.5vw,16px); font-family:var(--font-accroche); letter-spacing:.3px; }
+  .closing-contact{ display:flex; flex-wrap:wrap; gap:10px 28px; justify-content:center; align-items:center; margin-top:22px; }
+  .closing-contact a{ display:inline-flex; align-items:center; gap:9px; color:var(--lavande); text-decoration:none; font-size:14px; transition:color .25s; }
+  .closing-contact a:hover{ color:var(--blanc); }
+  .closing-contact .ig{ width:20px; height:20px; color:var(--violet); flex:none; }
+  .cta-contact{ display:flex; width:fit-content; margin:4px auto 0; align-items:center; gap:12px; cursor:pointer;
+    background:linear-gradient(135deg, rgba(139,92,246,0.95), rgba(96,48,220,0.95)); color:#fff; border:0;
+    border-radius:30px; padding:16px 34px; font-size:clamp(15px,1.7vw,18px); font-weight:700; font-family:var(--font);
+    box-shadow:0 18px 44px -16px rgba(139,92,246,0.9); transition:transform .25s, box-shadow .25s; }
+  .cta-contact:hover{ transform:translateY(-3px); box-shadow:0 26px 56px -16px rgba(139,92,246,1); }
+  .cta-contact span{ color:#fff; }
 
-/* ========== GARANTIES RGPD/HDS ========== */
-.garanties{display:grid;gap:18px;grid-template-columns:1fr;margin-top:46px}
-@media(min-width:720px){.garanties{grid-template-columns:1fr 1fr}}
-.garantie{background:var(--papier);border:1px solid var(--gris-300);border-radius:16px;padding:26px;display:flex;gap:18px;align-items:flex-start;transition:all .3s}
-.garantie:hover{border-color:var(--violet);transform:translateY(-3px);box-shadow:0 18px 38px -12px rgba(139,92,246,0.2)}
-.garantie .ic{flex:0 0 46px;width:46px;height:46px;background:linear-gradient(135deg,rgba(139,92,246,0.12),rgba(167,139,250,0.06));border:1px solid rgba(139,92,246,0.22);color:var(--violet);border-radius:13px;display:flex;align-items:center;justify-content:center}
-.garantie .ic svg{width:22px;height:22px}
-.garantie h4{font-size:1.04rem;font-weight:700;margin-bottom:6px;color:var(--noir)}
-.garantie p{font-size:0.93rem;color:var(--gris-700);line-height:1.6;margin:0}
+  /* ---------- Noyau d'IA vivant (page 2) ---------- */
+  .qsolia .field{ position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+  .nstage{ position:relative; z-index:1; flex:1; width:100%; display:flex; align-items:center; justify-content:center; }
+  .orbit{ position:relative; width:min(70vmin,640px); height:min(70vmin,640px); max-height:100%; }
+  .nlinks{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+  .nlinks line, .nlinks circle{ opacity:0; transition:opacity 1s ease .2s; }
+  #constel.in .nlinks line, #constel.in .nlinks circle{ opacity:1; }
 
-/* ========== TARIFICATION ========== */
-.tarif-intro{font-size:1.04rem;color:#c5c3d6;line-height:1.7;margin-bottom:36px;max-width:720px}
-.tarif-intro strong{color:#fff}
-.tarif-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:30px}
-@media(min-width:720px){.tarif-grid{grid-template-columns:1fr 1fr}}
-.tarif-card{background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));border:1px solid rgba(167,139,250,0.25);border-radius:20px;padding:34px 30px;position:relative;overflow:hidden;transition:all .3s}
-.tarif-card:hover{border-color:var(--violet);transform:translateY(-4px);box-shadow:0 24px 50px -12px rgba(139,92,246,0.3)}
-.tarif-card .typ{font-size:0.74rem;text-transform:uppercase;letter-spacing:2.2px;color:var(--lavande);font-weight:700;margin-bottom:14px}
-.tarif-card .montant{font-size:1.95rem;font-weight:800;background:linear-gradient(135deg,#fff,#e9d5ff);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1;margin-bottom:14px;letter-spacing:-0.6px}
-.tarif-card .montant span{font-size:0.92rem;font-weight:500;color:#b8b5cc;letter-spacing:0;background:none;-webkit-text-fill-color:#b8b5cc;display:inline}
-.tarif-card .desc{font-size:0.96rem;color:#ede9fe;line-height:1.65;margin-bottom:18px}
-.tarif-card .liste{list-style:none;padding:0;margin-top:14px}
-.tarif-card .liste li{display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:#c5c3d6;padding:6px 0;line-height:1.5}
-.tarif-card .liste li::before{content:"";flex:0 0 14px;width:14px;height:14px;background:var(--vert);mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat;margin-top:4px}
-.tarif-note{margin-top:30px;padding:22px 26px;background:linear-gradient(90deg,rgba(139,92,246,0.10),rgba(139,92,246,0.04));border-left:3px solid var(--lavande);border-radius:12px;color:#ede9fe;font-size:0.95rem;line-height:1.6}
-.tarif-note strong{color:#fff}
-.tarif-note .parrainage{display:block;margin-top:10px;color:var(--vert);font-style:italic;font-weight:500;font-size:0.92rem}
+  .ncore{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:min(24vmin,190px); height:min(24vmin,190px); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; text-align:center; pointer-events:none;
+    background:radial-gradient(circle, rgba(139,92,246,0.55), rgba(139,92,246,0.12) 55%, transparent 72%);
+  }
+  .ncore::after{ content:""; position:absolute; inset:0; border-radius:50%;
+    border:1.5px solid rgba(139,92,246,0.6);
+    box-shadow:0 0 30px rgba(139,92,246,0.55), 0 0 70px rgba(139,92,246,0.3) inset;
+    animation:pulse 3.2s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ transform:scale(.92); opacity:.7; } 50%{ transform:scale(1.12); opacity:1; } }
+  .ncore .ct{ font-weight:800; letter-spacing:-1px; font-size:clamp(15px,1.9vw,20px); }
+  .ncore .ct .accent{ color:var(--violet); }
 
-/* ========== CONTACT ========== */
-.contact-grid{display:grid;grid-template-columns:1fr;gap:36px;margin-top:46px}
-@media(min-width:820px){.contact-grid{grid-template-columns:1fr 1fr;gap:50px;align-items:start}}
-.contact-text p{margin-bottom:18px;color:var(--gris-700);font-size:1.02rem;line-height:1.7}
-.contact-text strong{color:var(--noir)}
-.contact-coords{display:flex;flex-direction:column;gap:14px;margin-top:24px}
-.contact-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--papier);border:1px solid var(--gris-300);border-radius:12px;transition:all .25s}
-.contact-row:hover{border-color:var(--violet);transform:translateX(4px);box-shadow:0 12px 26px -10px rgba(139,92,246,0.2)}
-.contact-row .ic{flex:0 0 38px;width:38px;height:38px;color:var(--violet);background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.18);border-radius:10px;display:flex;align-items:center;justify-content:center}
-.contact-row .ic svg{width:20px;height:20px}
-.contact-row .info{flex:1;min-width:0}
-.contact-row .info .lbl{font-size:0.74rem;text-transform:uppercase;letter-spacing:1.6px;color:var(--gris-500);font-weight:700;margin-bottom:2px}
-.contact-row .info .val{font-size:0.98rem;color:var(--noir);font-weight:600;word-break:break-word}
-.contact-form{background:linear-gradient(135deg,#1a0e2e 0%,#0a0a14 100%);border:1px solid rgba(167,139,250,0.4);border-radius:24px;padding:36px 32px;color:#f0edff;position:relative;overflow:hidden;box-shadow:0 40px 80px -20px rgba(0,0,0,0.5)}
-.contact-form::before{content:"";position:absolute;top:-140px;right:-140px;width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,0.3),transparent 65%);pointer-events:none}
-.contact-form h3{font-size:1.25rem;font-weight:700;margin-bottom:8px;position:relative;color:#fff}
-.contact-form .form-sub{font-size:0.93rem;color:#b8b5cc;margin-bottom:22px;position:relative;line-height:1.55}
-.contact-form .field{margin-bottom:14px;position:relative}
-.contact-form label{display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--lavande);font-weight:600;margin-bottom:6px}
-.contact-form input,.contact-form textarea,.contact-form select{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(167,139,250,0.25);border-radius:10px;padding:12px 14px;color:#fff;font-family:inherit;font-size:0.96rem;transition:all .2s}
-.contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{outline:none;border-color:var(--lavande);background:rgba(255,255,255,0.08)}
-.contact-form textarea{resize:vertical;min-height:96px}
-.contact-form select option{background:#13131F;color:#fff}
-.contact-form button{width:100%;margin-top:8px;background:linear-gradient(135deg,#fff,#ede9fe);color:var(--violet-fonce);font-weight:700;font-family:inherit;padding:14px 20px;border:none;border-radius:11px;font-size:1rem;cursor:pointer;box-shadow:0 18px 36px -12px rgba(255,255,255,0.35);transition:transform .25s,box-shadow .25s;position:relative}
-.contact-form button:hover{transform:translateY(-2px);box-shadow:0 24px 46px -12px rgba(255,255,255,0.45)}
-.contact-form .rgpd-note{margin-top:14px;font-size:0.78rem;color:#b8b5cc;line-height:1.5;position:relative}
+  .enode{
+    position:absolute; transform:translate(-50%,-50%) scale(.6); opacity:0; cursor:pointer;
+    background:transparent; border:0; color:var(--blanc); display:flex; align-items:center; justify-content:center; width:max-content;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s;
+  }
+  #constel.in .enode{ transform:translate(-50%,-50%) scale(1); opacity:1; }
+  .enode::before{ content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:180px; height:120px; border-radius:50%; z-index:-1; pointer-events:none;
+    background:radial-gradient(ellipse, rgba(139,92,246,0.30), transparent 70%); transition:background .3s; }
+  .enode:hover::before{ background:radial-gradient(ellipse, rgba(139,92,246,0.5), transparent 72%); }
+  .enode .lbl{
+    font-family:var(--font); font-size:14px; font-weight:600; letter-spacing:-.2px;
+    padding:8px 16px; border-radius:20px; background:rgba(18,18,42,0.7);
+    border:1px solid rgba(139,92,246,0.55); white-space:nowrap;
+    box-shadow:0 0 24px rgba(139,92,246,0.38), 0 0 0 1px rgba(139,92,246,0.10) inset;
+    transition:border-color .3s, background .3s, box-shadow .3s;
+  }
+  .enode:hover .lbl{ border-color:rgba(139,92,246,0.95); background:#171738;
+    box-shadow:0 0 36px rgba(139,92,246,0.65), 0 0 0 1px rgba(139,92,246,0.18) inset; }
+  .lbl .ndot{ display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--violet);
+    margin-right:9px; vertical-align:middle; box-shadow:0 0 8px var(--violet); transition:background .3s, box-shadow .3s; }
+  .enode:hover .lbl .ndot{ background:var(--fluo); box-shadow:0 0 10px var(--fluo), 0 0 18px var(--fluo);
+    animation:dotpulse 1.1s ease-in-out infinite; }
+  @keyframes dotpulse{ 0%,100%{ transform:scale(1.25); } 50%{ transform:scale(1.7); } }
 
-/* ========== FOOTER ========== */
-footer{background:var(--noir);color:#9d9aab;padding:56px 0 36px;text-align:center}
-.footer-logo{font-weight:800;font-size:1.6rem;color:#f0edff;margin-bottom:6px;letter-spacing:-0.4px}
-.footer-logo .dot{color:var(--violet)}
-.footer-slogan{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.35rem;background:linear-gradient(135deg,var(--lavande),#e9d5ff);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:26px;font-weight:500}
-.footer-grid{display:grid;grid-template-columns:1fr;gap:24px;margin:32px auto;max-width:760px;padding:0 24px}
-@media(min-width:680px){.footer-grid{grid-template-columns:repeat(3,1fr);text-align:left}}
-.footer-col h5{font-size:0.78rem;text-transform:uppercase;letter-spacing:1.8px;color:#cbc8d9;font-weight:700;margin-bottom:12px}
-.footer-col a,.footer-col p{display:block;font-size:0.88rem;color:#9d9aab;line-height:1.7;margin-bottom:4px}
-.footer-col a:hover{color:var(--lavande)}
-.footer-legal{font-size:0.8rem;color:#7a7787;line-height:1.7;margin-top:32px;border-top:1px solid rgba(255,255,255,0.06);padding-top:24px}
-.footer-legal strong{color:#cbc8d9}
+  .e1{left:50%;top:7%} .e2{left:90%;top:30%} .e3{left:90%;top:70%}
+  .e4{left:50%;top:93%} .e5{left:10%;top:70%} .e6{left:10%;top:30%}
+  #constel.in .e2{transition-delay:.08s} #constel.in .e3{transition-delay:.16s}
+  #constel.in .e4{transition-delay:.24s} #constel.in .e5{transition-delay:.32s} #constel.in .e6{transition-delay:.40s}
 
-/* ========== RESPONSIVE NAV ========== */
-@media(max-width:780px){
-  .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(9,9,15,0.97);backdrop-filter:blur(14px);padding:20px 24px;gap:18px;border-top:1px solid rgba(167,139,250,0.12)}
-  .nav-menu.open{display:flex}
-  .nav-burger{display:block}
-  .nav-cta{align-self:flex-start}
-}
+  @media(max-width:760px){
+    .orbit{ width:min(94vw,520px); }
+    .ncore{ width:min(36vw,160px); height:min(36vw,160px); }
+    .ncore .ct{ font-size:clamp(14px,4.4vw,18px); }
+    .enode::before{ width:120px; height:96px; }
+    .enode .lbl{ font-size:11px; white-space:normal; max-width:25vw; text-align:center; line-height:1.2; padding:6px 10px; }
+    .enode.e1{ top:9%; } .enode.e4{ top:91%; }
+  }
 
-@media(max-width:600px){
-  .wrap{padding:0 18px}
-  .hero{padding:120px 0 80px}
-  section{padding:72px 0}
-  .solia-badge{width:200px;height:200px;margin-bottom:28px}
-  .hero-ctas{flex-direction:column;align-items:stretch}
-  .cta-primary,.cta-secondary{justify-content:center}
-}
+  /* ---------- Page-sujet (ouverture animée depuis le sujet) ---------- */
+  #topic{
+    position:fixed; inset:0; z-index:90;
+    background:radial-gradient(circle at 50% 22%, rgba(139,92,246,0.20), transparent 60%), var(--noir);
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:100px 24px 70px; visibility:hidden; overflow-y:auto;
+    clip-path:circle(0% at var(--cx,50%) var(--cy,50%));
+    transition:clip-path .7s cubic-bezier(.66,0,.2,1), visibility 0s linear .7s;
+  }
+  #topic.open{ visibility:visible; clip-path:circle(150% at var(--cx,50%) var(--cy,50%));
+    transition:clip-path .7s cubic-bezier(.66,0,.2,1), visibility 0s; }
+  .topic-inner{ width:100%; max-width:760px; opacity:0; transform:translateY(16px);
+    transition:opacity .5s ease, transform .5s ease; }
+  #topic.open .topic-inner{ opacity:1; transform:none; transition-delay:.35s; }
+  .topic-back{
+    position:fixed; top:24px; left:24px; z-index:2; background:rgba(9,9,15,0.6);
+    border:1px solid var(--bordure); color:var(--lavande); cursor:pointer;
+    border-radius:24px; padding:9px 18px; font-size:13px; letter-spacing:1px;
+    font-family:var(--font-accroche); opacity:0;
+    transition:opacity .4s ease, border-color .3s, color .3s;
+  }
+  #topic.open .topic-back{ opacity:1; transition-delay:.4s; }
+  .topic-back:hover{ border-color:var(--violet); color:var(--blanc); }
+  .topic-num{ color:var(--violet); font-weight:700; letter-spacing:3px; font-size:13px; font-family:var(--font-accroche); }
+  .topic-title{ display:flex; align-items:center; gap:16px; font-size:clamp(28px,4.6vw,54px); font-weight:800; letter-spacing:-1.5px; margin:10px 0 22px; line-height:1.06; }
+  .topic-title .accent{ color:var(--violet); font-family:var(--font-title); font-style:italic; font-weight:600; }
+  .topic-title::before{ content:""; flex:none; width:14px; height:14px; border-radius:50%;
+    background:var(--fluo); box-shadow:0 0 10px var(--fluo), 0 0 20px var(--fluo);
+    animation:dot-pulse 1.4s ease-in-out infinite; }
+  .topic-title .accent{ color:var(--violet); }
+  .topic-body{ color:var(--lavande); line-height:1.75; font-size:clamp(15px,1.5vw,18px); }
+  .topic-body p{ margin-bottom:1.05em; text-align:justify; -webkit-hyphens:auto; hyphens:auto; }
+  .topic-body strong{ color:var(--blanc); font-weight:700; }
+  .topic-body .w{ color:var(--blanc); }
+  .topic-body ul{ list-style:none; margin:0 0 1.1em; padding:0; }
+  .topic-body li{ position:relative; padding-left:22px; margin-bottom:.7em; }
+  .topic-body li::before{ content:""; position:absolute; left:2px; top:.6em; width:7px; height:7px;
+    border-radius:50%; background:var(--fluo); box-shadow:0 0 8px var(--fluo), 0 0 14px var(--fluo);
+    transform-origin:center; animation:dot-pulse 1.4s ease-in-out infinite; }
+  .topic-body a{ color:var(--violet); }
+  .topic-body .quote{ border-left:2px solid var(--violet); padding-left:16px; color:var(--blanc);
+    font-style:italic; opacity:.92; margin:1.2em 0; }
 
-/* ========== SCROLL TO TOP ========== */
-.scroll-top{position:fixed;bottom:28px;right:28px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--violet-fonce));color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 32px -8px rgba(139,92,246,0.55);opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .3s ease,transform .3s ease,box-shadow .25s ease;z-index:99}
-.scroll-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.scroll-top:hover{transform:translateY(-4px);box-shadow:0 20px 40px -8px rgba(139,92,246,0.7)}
-.scroll-top svg{width:22px;height:22px}
-@media(max-width:600px){.scroll-top{bottom:18px;right:18px;width:46px;height:46px}.scroll-top svg{width:20px;height:20px}}
+  /* apparition en cascade du contenu de la page-sujet */
+  .topic-body > *{ opacity:0; }
+  #topic.open .topic-body > *{ animation:tfade .55s ease forwards; }
+  #topic.open .topic-body > *:nth-child(1){ animation-delay:.42s; }
+  #topic.open .topic-body > *:nth-child(2){ animation-delay:.50s; }
+  #topic.open .topic-body > *:nth-child(3){ animation-delay:.58s; }
+  #topic.open .topic-body > *:nth-child(4){ animation-delay:.66s; }
+  #topic.open .topic-body > *:nth-child(5){ animation-delay:.74s; }
+  #topic.open .topic-body > *:nth-child(6){ animation-delay:.82s; }
+  @keyframes tfade{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
+
+  /* ----- Interface assistante (Célia) + démo ----- */
+  .assistant-ui{ margin:20px 0 8px; border:1px solid var(--bordure); border-radius:16px; overflow:hidden;
+    background:linear-gradient(180deg, rgba(18,18,42,0.7), rgba(9,9,15,0.5)); box-shadow:0 24px 60px -28px rgba(139,92,246,0.5); }
+  .aui-top{ display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--bordure);
+    background:rgba(139,92,246,0.08); font-family:var(--font-accroche); font-size:12px; letter-spacing:1px; color:var(--lavande); }
+  .aui-top .dotrow{ display:flex; gap:6px; }
+  .aui-top .dotrow i{ width:9px; height:9px; border-radius:50%; background:#2A2A4A; }
+  .aui-top b{ color:var(--blanc); font-weight:700; letter-spacing:.5px; }
+  .aui-top .live{ margin-left:auto; color:var(--fluo); display:inline-flex; align-items:center; gap:7px; font-weight:700; }
+  .aui-top .live::before{ content:""; width:8px; height:8px; border-radius:50%; background:var(--fluo); box-shadow:0 0 10px var(--fluo); animation:dotpulse 1.3s ease-in-out infinite; }
+  .aui-list{ padding:12px; display:flex; flex-direction:column; gap:10px; max-height:330px; overflow:auto; }
+  .demande{ display:grid; grid-template-columns:1fr auto; gap:5px 12px; align-items:center;
+    padding:13px 15px; border:1px solid rgba(139,92,246,0.22); border-radius:12px; background:rgba(18,18,42,0.6); }
+  .demande .who{ grid-column:1; font-weight:700; color:var(--blanc); font-size:15px; }
+  .demande .motif{ grid-column:1; color:var(--lavande); font-size:13.5px; }
+  .demande .tags{ grid-column:1; display:flex; gap:7px; flex-wrap:wrap; margin-top:3px; }
+  .tag2{ font-size:11px; letter-spacing:.5px; padding:3px 9px; border-radius:20px; border:1px solid rgba(139,92,246,0.4); color:var(--lavande); }
+  .tag2.urg{ color:#fff; background:rgba(245,158,11,0.18); border-color:rgba(245,158,11,0.6); }
+  .demande .when{ grid-row:1; grid-column:2; color:var(--lavande); font-size:12px; opacity:.7; text-align:right; }
+  .call-back{ grid-row:2 / span 2; grid-column:2; align-self:center; cursor:pointer;
+    background:rgba(139,92,246,0.16); border:1px solid rgba(139,92,246,0.6); color:var(--blanc);
+    border-radius:20px; padding:8px 14px; font-size:12.5px; white-space:nowrap; transition:background .25s,border-color .25s; }
+  .call-back:hover{ background:#171738; border-color:var(--violet); }
+  .demande.fresh{ border-color:rgba(43,255,136,0.5); box-shadow:0 0 0 1px rgba(43,255,136,0.25), 0 0 24px rgba(43,255,136,0.18); animation:slidein .5s cubic-bezier(.2,.7,.2,1); }
+  @keyframes slidein{ from{ opacity:0; transform:translateY(-10px) scale(.98); } to{ opacity:1; transform:none; } }
+
+  /* interface multi-praticiens (classement par praticien) */
+  .aui-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:12px; }
+  .aui-col{ background:rgba(9,9,15,0.4); border:1px solid var(--bordure); border-radius:10px; padding:10px; min-height:130px; }
+  .aui-col h4{ font-family:var(--font-accroche); font-size:11px; letter-spacing:1px; color:var(--lavande);
+    text-transform:uppercase; margin:0 0 9px; display:flex; align-items:center; gap:7px; }
+  .aui-col h4 .pdot{ width:7px; height:7px; border-radius:50%; background:var(--violet); box-shadow:0 0 8px var(--violet); }
+  .aui-col h4 .ct{ margin-left:auto; opacity:.6; font-size:10px; }
+  .dcard{ background:rgba(18,18,42,0.72); border:1px solid rgba(139,92,246,0.22); border-radius:9px; padding:9px 10px; margin-bottom:8px; }
+  .dcard .m{ color:var(--blanc); font-size:12.5px; font-weight:600; line-height:1.25; }
+  .dcard .b{ display:flex; gap:6px; margin-top:7px; align-items:center; flex-wrap:wrap; }
+  .dcard .t{ font-size:10px; padding:2px 7px; border-radius:14px; border:1px solid rgba(139,92,246,0.4); color:var(--lavande); }
+  .dcard .t.urg{ color:#fff; background:rgba(245,158,11,0.2); border-color:rgba(245,158,11,0.65); }
+  .dcard .cb{ margin-left:auto; font-size:11px; color:var(--violet); cursor:pointer; white-space:nowrap; }
+  .dcard.fresh{ border-color:rgba(43,255,136,0.55); box-shadow:0 0 0 1px rgba(43,255,136,0.25), 0 0 18px rgba(43,255,136,0.18); animation:slidein .5s cubic-bezier(.2,.7,.2,1); }
+  @media(max-width:620px){ .aui-cols{ grid-template-columns:1fr; } }
+
+  /* transcription en direct (démo) */
+  .chat{ display:none; flex-direction:column; gap:8px; padding:13px 14px; border-bottom:1px solid var(--bordure); background:rgba(9,9,15,0.35); max-height:230px; overflow:auto; }
+  .chat.on{ display:flex; }
+  .msg{ max-width:84%; padding:8px 12px; border-radius:14px; font-size:13px; line-height:1.4; opacity:0; transform:translateY(6px); animation:msgin .35s ease forwards; }
+  .msg .nm{ display:block; font-size:10px; letter-spacing:1px; text-transform:uppercase; margin-bottom:3px; opacity:.75; font-family:var(--font-accroche); }
+  .msg.celia{ align-self:flex-start; background:rgba(139,92,246,0.16); border:1px solid rgba(139,92,246,0.4); color:var(--blanc); border-bottom-left-radius:4px; }
+  .msg.celia .nm{ color:var(--violet); }
+  .msg.patient{ align-self:flex-end; background:rgba(18,18,42,0.85); border:1px solid var(--bordure); color:var(--lavande); border-bottom-right-radius:4px; }
+  @keyframes msgin{ to{ opacity:1; transform:none; } }
+
+  /* formulaire de contact (Tarifs & Contact) */
+  .cform{ margin-top:14px; display:grid; gap:12px; }
+  .cform .row2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:560px){ .cform .row2{ grid-template-columns:1fr; } }
+  .cform .fields{ display:grid; gap:12px; }
+  .cform label{ display:block; font-size:12px; color:var(--lavande); margin-bottom:5px; font-family:var(--font-accroche); letter-spacing:.5px; }
+  .cform input, .cform select, .cform textarea{
+    width:100%; background:rgba(18,18,42,0.7); border:1px solid rgba(139,92,246,0.35); border-radius:10px;
+    padding:11px 13px; color:var(--blanc); font-family:var(--font); font-size:14px; outline:none;
+    transition:border-color .25s, box-shadow .25s; }
+  .cform input::placeholder, .cform textarea::placeholder{ color:rgba(167,139,250,0.5); }
+  .cform input:focus, .cform select:focus, .cform textarea:focus{ border-color:var(--violet); box-shadow:0 0 0 3px rgba(139,92,246,0.18); }
+  .cform textarea{ min-height:92px; resize:vertical; }
+  .cform .submit{ justify-self:start; cursor:pointer; border:0; color:#fff;
+    background:linear-gradient(135deg, rgba(139,92,246,0.95), rgba(96,48,220,0.95));
+    border-radius:26px; padding:13px 26px; font-size:14px; font-weight:600;
+    box-shadow:0 14px 36px -14px rgba(139,92,246,0.9); transition:transform .25s, box-shadow .25s; }
+  .cform .submit:hover{ transform:translateY(-2px); box-shadow:0 20px 44px -14px rgba(139,92,246,1); }
+  .cform .rgpd{ font-size:11.5px; color:var(--lavande); opacity:.6; margin:0; }
+  .cform .ok{ display:none; padding:16px 18px; border:1px solid rgba(43,255,136,0.5); border-radius:12px;
+    background:rgba(43,255,136,0.08); color:var(--blanc); }
+  .cform.sent .ok{ display:block; }
+  .cform.sent .fields{ display:none; }
+
+  /* ----- Tarifs : reproduction exacte du site ----- */
+  .tarif-lead{ font-size:clamp(19px,2.3vw,26px); font-weight:800; color:var(--blanc); letter-spacing:-.4px; line-height:1.25; margin-bottom:14px; }
+  .tarif-intro{ font-size:1.04rem; color:#c5c3d6; line-height:1.7; margin-bottom:30px; max-width:720px; text-align:left; }
+  .tarif-intro strong{ color:#fff; }
+  .tarif-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:22px; }
+  @media(max-width:600px){ .tarif-grid{ grid-template-columns:1fr; } }
+  .tarif-card{ background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01)); border:1px solid rgba(167,139,250,0.25); border-radius:20px; padding:34px 30px; position:relative; overflow:hidden; transition:all .3s; }
+  .tarif-card:hover{ border-color:var(--violet); transform:translateY(-4px); box-shadow:0 24px 50px -12px rgba(139,92,246,0.3); }
+  .tarif-card .typ{ font-size:0.74rem; text-transform:uppercase; letter-spacing:2.2px; color:var(--lavande); font-weight:700; margin-bottom:14px; }
+  .tarif-card .montant{ font-size:1.95rem; font-weight:800; background:linear-gradient(135deg,#fff,#e9d5ff); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1.1; margin-bottom:14px; letter-spacing:-0.6px; }
+  .tarif-card .montant span{ font-size:0.92rem; font-weight:500; color:#b8b5cc; letter-spacing:0; background:none; -webkit-text-fill-color:#b8b5cc; display:inline; }
+  .tarif-card .desc{ font-size:0.96rem; color:#ede9fe; line-height:1.65; margin-bottom:18px; text-align:left; }
+  .tarif-card .liste{ list-style:none; padding:0; margin-top:14px; }
+  .tarif-card .liste li{ display:flex; align-items:flex-start; gap:10px; font-size:0.9rem; color:#c5c3d6; padding:6px 0; line-height:1.5; margin:0; }
+  .tarif-card .liste li::before{ content:""; position:static; left:auto; top:auto; border-radius:0; box-shadow:none; animation:checkpulse 1.4s ease-in-out infinite; transform-origin:center; flex:0 0 14px; width:14px; height:14px; background:var(--fluo); mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat; -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/contain no-repeat; margin-top:4px; }
+  .tarif-note{ margin-top:28px; padding:22px 26px; background:linear-gradient(90deg,rgba(139,92,246,0.10),rgba(139,92,246,0.04)); border-left:3px solid var(--lavande); border-radius:12px; color:#ede9fe; font-size:0.95rem; line-height:1.6; text-align:left; }
+  .tarif-note strong{ color:#fff; }
+  .tarif-note .parrainage{ display:block; margin-top:10px; color:var(--fluo); font-style:italic; font-weight:500; font-size:0.92rem; }
+  @keyframes checkpulse{ 0%,100%{ transform:scale(1); opacity:1; } 50%{ transform:scale(1.28); opacity:.6; } }
+
+  .demo-row{ display:flex; align-items:center; gap:14px; margin:6px 0 2px; flex-wrap:wrap; }
+  .demo-btn{ display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+    background:linear-gradient(135deg, rgba(139,92,246,0.95), rgba(96,48,220,0.95)); color:#fff; border:0;
+    border-radius:26px; padding:12px 22px; font-size:14px; font-weight:600; font-family:var(--font);
+    box-shadow:0 14px 36px -14px rgba(139,92,246,0.9); transition:transform .25s, box-shadow .25s; }
+  .demo-btn:hover{ transform:translateY(-2px); box-shadow:0 20px 44px -14px rgba(139,92,246,1); }
+  .demo-btn .pl{ width:0; height:0; border-left:11px solid #fff; border-top:7px solid transparent; border-bottom:7px solid transparent; }
+  .demo-note{ color:var(--lavande); font-size:12.5px; opacity:.7; }
+
+  .call-banner{ display:flex; align-items:center; gap:12px; margin:14px 0 4px; padding:12px 16px;
+    border:1px solid rgba(139,92,246,0.5); border-radius:12px; background:rgba(139,92,246,0.10);
+    opacity:0; transform:translateY(-8px); transition:opacity .35s, transform .35s; }
+  .call-banner.on{ opacity:1; transform:none; }
+  .call-banner .ring{ width:34px; height:34px; border-radius:50%; border:2px solid var(--violet);
+    display:flex; align-items:center; justify-content:center; font-size:15px; animation:ringpulse 1s ease-in-out infinite; }
+  @keyframes ringpulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(139,92,246,0.5); } 50%{ box-shadow:0 0 0 9px rgba(139,92,246,0); } }
+  .call-banner .ctxt b{ color:var(--blanc); }
+  .call-banner .ctxt small{ display:block; color:var(--lavande); font-size:12px; margin-top:2px; }
+
+  /* ---------- MODAL ---------- */
+  #modal{
+    position:fixed; inset:0; z-index:100; display:none;
+    align-items:center; justify-content:center; padding:24px;
+    background:rgba(5,5,11,0.78); backdrop-filter:blur(6px);
+  }
+  #modal.open{display:flex;}
+  .modal-card{
+    position:relative; max-width:560px; width:100%;
+    background:var(--surface); border:1.5px solid rgba(139,92,246,0.5);
+    border-radius:22px; padding:42px 38px;
+    box-shadow:0 30px 80px -20px rgba(139,92,246,0.4);
+    transform:translateY(14px) scale(.98); opacity:0;
+    transition:transform .4s cubic-bezier(.2,.7,.2,1), opacity .4s;
+  }
+  #modal.open .modal-card{transform:none;opacity:1;}
+  .modal-card .num{color:var(--violet);font-weight:700;letter-spacing:2px;font-size:13px;}
+  .modal-card h3{font-size:28px;font-weight:800;letter-spacing:-1px;margin:10px 0 18px;}
+  .modal-card p{color:var(--lavande);line-height:1.7;font-size:15.5px;}
+  .modal-card .close{
+    position:absolute; top:18px; right:20px; width:34px;height:34px;
+    border:1px solid var(--bordure); border-radius:50%; background:transparent;
+    color:var(--lavande); cursor:pointer; font-size:18px; line-height:1;
+    transition:border-color .3s,color .3s;
+  }
+  .modal-card .close:hover{border-color:var(--violet);color:var(--blanc);}
+  .modal-card .tag{
+    display:inline-block;margin-top:22px;font-size:12px;letter-spacing:1px;
+    color:var(--lavande);opacity:.6;
+  }
+
+  footer{
+    text-align:center; padding:60px 24px; color:var(--lavande); opacity:.6;
+    font-size:13px; letter-spacing:1px; border-top:1px solid var(--bordure);
+  }
 </style>
 </head>
 <body>
 
-<!-- ========== NAV ========== -->
-<nav class="nav" role="navigation" aria-label="Navigation principale">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo" aria-label="Sol·IA — Accueil">
-      Sol<span class="dot">·IA</span>
-      <span class="nav-logo-status" aria-label="Agence en ligne"></span>
-    </a>
-    <button class="nav-burger" aria-label="Menu" onclick="document.querySelector('.nav-menu').classList.toggle('open')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <ul class="nav-menu">
-      <li><a href="#agence">L'agence</a></li>
-      <li><a href="#cibles">Pour quoi</a></li>
-      <li><a href="#solutions">Solutions</a></li>
-      <li><a href="#cabinet-pilote">Exemple Volx</a></li>
-      <li><a href="#garanties">RGPD/HDS</a></li>
-      <li><a href="#tarifs">Tarifs</a></li>
-      <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ========== HERO ========== -->
-<header class="hero">
-  <div class="wrap hero-inner">
-    <div class="solia-badge">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" class="solia-svg" role="img" aria-label="Sol·IA — Agence IA en ligne">
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="stage">
+      <div class="halo" id="halo"></div>
+      <div class="logo-wrap" id="logo">
+      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="halo" cx="50%" cy="50%" r="55%">
-            <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.32"/>
-            <stop offset="55%" stop-color="#8B5CF6" stop-opacity="0.10"/>
-            <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+          <radialGradient id="h128" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="#09090F" stop-opacity="0"/>
           </radialGradient>
-          <radialGradient id="onlineGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#10B981" stop-opacity="0.65"/>
-            <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
-          </radialGradient>
-          <linearGradient id="sep" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0"/>
-            <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.7"/>
-            <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
-          </linearGradient>
-          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="4" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="ringglow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="8" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="greenglow" x="-100%" y="-100%" width="300%" height="300%">
+          <filter id="g128" x="-40%" y="-40%" width="180%" height="180%">
             <feGaussianBlur stdDeviation="5" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="r128" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="10" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
-        <circle cx="400" cy="320" r="280" fill="url(#halo)"/>
-        <circle cx="400" cy="320" r="220" fill="none" stroke="#8B5CF6" stroke-width="1" stroke-opacity="0.18"/>
-        <circle cx="400" cy="320" r="200" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-opacity="0.45" filter="url(#ringglow)"/>
-        <circle cx="400" cy="320" r="200" fill="none" stroke="#8B5CF6" stroke-width="1.2" stroke-opacity="0.7"/>
-        <circle cx="400" cy="320" r="198" fill="#8B5CF6" fill-opacity="0.04"/>
-        <text x="400" y="357" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="120" font-weight="800" text-anchor="middle" letter-spacing="-2" filter="url(#glow)">
+        <circle cx="250" cy="250" r="220" fill="url(#h128)"/>
+        <circle cx="250" cy="250" r="195" fill="none" stroke="#8B5CF6" stroke-width="4" stroke-opacity="0.45" filter="url(#r128)"/>
+        <circle cx="250" cy="250" r="195" fill="none" stroke="#8B5CF6" stroke-width="2.5" stroke-opacity="0.7"/>
+        <circle cx="250" cy="250" r="193" fill="#8B5CF6" fill-opacity="0.05"/>
+        <text x="250" y="292" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="130" font-weight="800" text-anchor="middle" letter-spacing="-2" filter="url(#g128)">
           <tspan fill="#f0edff">Sol</tspan><tspan fill="#8B5CF6">·IA</tspan>
         </text>
-        <line x1="280" y1="560" x2="520" y2="560" stroke="url(#sep)" stroke-width="1.2"/>
-        <rect x="240" y="590" width="320" height="56" rx="28" fill="#8B5CF6" fill-opacity="0.22" stroke="#8B5CF6" stroke-opacity="0.5" stroke-width="1.5"/>
-        <circle cx="280" cy="618" r="18" fill="url(#onlineGlow)">
-          <animate attributeName="r" values="14;22;14" dur="2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.7;0.25;0.7" dur="2s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="280" cy="618" r="10" fill="#10B981" fill-opacity="0.25"/>
-        <circle cx="280" cy="618" r="6" fill="#10B981" filter="url(#greenglow)">
-          <animate attributeName="opacity" values="1;0.65;1" dur="2s" repeatCount="indefinite"/>
-        </circle>
-        <text x="410" y="628" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="30" font-weight="600" text-anchor="middle" fill="#f0edff" letter-spacing="6">AGENCE IA</text>
       </svg>
+      </div>
     </div>
-    <h1>L'agence qui construit, <span class="ac">avec vous,</span><br>les agents IA sur-mesure.</h1>
-    <p class="baseline">« Votre quotidien, enfin allégé. »</p>
-    <p class="hero-sub">Téléphone, mails, réseaux sociaux, gestion de stock, tri courriers, devis, relances… Sol·IA conçoit l'agent IA qui prend en charge la tâche qui vous bouffe le plus de temps. Tous secteurs, tous métiers — pourvu qu'il y ait une vraie tâche à enlever des mains.</p>
-    <div class="hero-ctas">
-      <a class="cta-primary" href="#contact">Réserver un échange découverte
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <a class="cta-secondary" href="#cabinet-pilote">Voir l'exemple Volx</a>
+
+    <div class="baseline" id="baseline">
+      <span class="eyebrow"><span class="dot"></span>AGENCE IA</span>
+      <p class="phrase">L'agence qui construit, avec vous,<br>vos agents IA <span class="accent">sur-mesure</span>.</p>
     </div>
+
+    <div class="scroll-hint" id="scrollHint">
+      SCROLLEZ POUR ENTRER
+      <span class="chev"></span>
+    </div>
+  </section>
+
+  <div id="zoom-zone"></div>
+
+  <!-- ============ CONTENU ============ -->
+  <div class="topbar" id="topbar">
+    <span class="brand">Sol<span class="accent">·IA</span></span>
   </div>
-</header>
 
-<!-- ========== AGENCE ========== -->
-<section id="agence" class="soft">
-  <div class="wrap">
-    <span class="eyebrow">L'agence</span>
-    <h2>Sol·IA est une agence. <span class="it">Pas un logiciel sur étagère.</span></h2>
-    <p class="lead">On ne vous vend pas un produit. On construit avec vous l'agent IA qui vous manque — et seulement celui-là. Vous décidez du périmètre, du ton, des limites. On vous livre, on accompagne, on ajuste.</p>
+  <div id="content">
+    <section class="qsolia" id="qsolia">
+      <canvas class="field" id="field"></canvas>
+      <p class="section-eyebrow">Choisissez votre sujet</p>
+      <h2>Explorez <span class="accent">Sol·IA</span></h2>
 
-    <div class="qui-grid">
-      <div class="qui-text">
-        <p>Sol·IA est née d'un constat simple : <strong>dans presque tous les métiers, il existe une tâche qui mange l'équipe sans rien apporter au cœur du travail</strong>. Le téléphone qui sonne pendant la consultation. Les mails qui s'empilent et qu'on traite trop tard. Le compte Instagram qu'on n'a pas alimenté depuis trois semaines. Le stock qu'on ne réajuste plus parce qu'on n'a pas le temps. Les courriers qu'on lit en diagonale.</p>
-        <p>Notre travail, c'est de <strong>retirer cette tâche-là</strong>, et seulement celle-là — proprement, avec un agent IA conçu pour votre quotidien réel. <strong>On n'a pas inventé une solution dans un loft startup.</strong> On a fait nos premières armes avec un cabinet réel — le Cabinet Dentaire de Volx — parce qu'il fallait un terrain d'apprentissage exigeant. Aujourd'hui ce qu'on a appris s'applique à tout métier où une tâche répétitive bouffe une équipe.</p>
-        <div class="qui-quote">« On ne vend pas de l'IA. On vend du temps libéré, sur un sujet précis, avec un outil qui marche en vrai. »</div>
-        <p>Co-fondée par <strong>Johann</strong> (produit &amp; technique) et <strong>Victorine</strong> (juridique, RGPD, opérations), Sol·IA est une micro-entreprise française basée à Volx (04). On préfère bien servir trois clients qu'en signer trente.</p>
-      </div>
-      <div class="qui-card">
-        <h4>Ce qu'on est · ce qu'on n'est pas</h4>
-        <div class="qui-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>Agence sur-mesure</strong> — un agent IA par client, configuré pour votre quotidien</span></div>
-        <div class="qui-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>Client en production</strong> — pas un slide deck, un cabinet qui tourne</span></div>
-        <div class="qui-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>Données hébergées en France</strong> — RGPD strict, secteurs sensibles maîtrisés</span></div>
-        <div class="qui-row"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span><strong>Garde-fous décidés ensemble</strong> — vous gardez la main sur les décisions sensibles</span></div>
-        <div class="qui-row"><span class="ic" style="color:var(--rouge)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span><strong>Pas un produit standard</strong> — on refuse les déploiements à l'aveugle</span></div>
-        <div class="qui-row"><span class="ic" style="color:var(--rouge)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span><strong>Pas un chatbot générique</strong> — nos agents sont conçus pour une tâche précise, et la font bien</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="nstage">
+        <div class="orbit" id="constel">
+          <svg class="nlinks" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+            <line x1="50" y1="50" x2="50" y2="7"  stroke="#8B5CF6" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="90" y2="30" stroke="#8B5CF6" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="90" y2="70" stroke="#8B5CF6" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="50" y2="93" stroke="#8B5CF6" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="10" y2="70" stroke="#8B5CF6" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="50" y1="50" x2="10" y2="30" stroke="#8B5CF6" stroke-opacity="0.22" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="#8B5CF6" stroke-opacity="0.10" stroke-width="1" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div class="ncore"><span class="ct">Sol<span class="accent">·IA</span></span></div>
 
-<!-- ========== POUR QUOI / POUR QUI ========== -->
-<section id="cibles">
-  <div class="wrap">
-    <span class="eyebrow">Pour quoi · pour qui</span>
-    <h2>La règle est simple : <span class="it">si la tâche est répétitive et chronophage, on peut la prendre.</span></h2>
-    <p class="lead">On ne choisit pas par métier, on choisit par tâche. Voici les 4 grandes familles de besoins qu'on traite aujourd'hui — avec quelques exemples de métiers concernés. Si votre cas n'est pas listé, dites-le nous : on en a probablement déjà parlé avec quelqu'un comme vous.</p>
-
-    <div class="solutions-grid" style="margin-top:46px">
-
-      <div class="solu-card" style="background:#fff;border-color:var(--gris-300)">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L9.91 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
-        <h4 style="color:var(--noir)">Accueil &amp; téléphone</h4>
-        <p style="color:var(--gris-700)">Quand le standard sonne plus vite que vos mains ne suivent. <em>Cabinets médicaux/dentaires, vétérinaires, ostéos, avocats, garages, agences immobilières…</em></p>
-      </div>
-
-      <div class="solu-card" style="background:#fff;border-color:var(--gris-300)">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <h4 style="color:var(--noir)">Mails &amp; courriers</h4>
-        <p style="color:var(--gris-700)">Tri intelligent, priorisation, réponses pré-rédigées, alertes. <em>PME, professions libérales, services administratifs, e-commerce, conciergeries…</em></p>
-      </div>
-
-      <div class="solu-card" style="background:#fff;border-color:var(--gris-300)">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-        <h4 style="color:var(--noir)">Réseaux sociaux &amp; contenu</h4>
-        <p style="color:var(--gris-700)">Génération de posts, planning éditorial, réponses aux DM, modération. <em>Commerçants, restaurants, indépendants, influenceurs, marques personnelles…</em></p>
-      </div>
-
-      <div class="solu-card" style="background:#fff;border-color:var(--gris-300)">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-        <h4 style="color:var(--noir)">Gestion opérationnelle</h4>
-        <p style="color:var(--gris-700)">Stock, devis, relances factures, planning, reporting. <em>Artisans, boutiques, ateliers, services à domicile, BTP, hôtellerie…</em></p>
-      </div>
-
-    </div>
-
-    <div class="sur-mesure-headline" style="margin-top:46px;background:linear-gradient(135deg,rgba(139,92,246,0.08) 0%,rgba(167,139,250,0.02) 100%);border-color:rgba(139,92,246,0.25)">
-      <p style="color:var(--noir)">Et si votre besoin ne rentre dans aucune case ? <strong style="color:var(--violet-fonce)">Dites-le-nous quand même.</strong> Notre métier, c'est précisément de construire ce qui n'existe pas encore — à condition qu'il y ait une vraie tâche à enlever des mains d'une équipe.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SOLUTIONS ========== -->
-<section id="solutions" class="dark">
-  <div class="wrap">
-    <span class="eyebrow">Exemples de briques</span>
-    <h2>Quelques agents qu'on sait construire. <span class="it">Et beaucoup d'autres qu'on n'a pas encore listés.</span></h2>
-    <p class="lead">Ce ne sont pas des produits sur étagère — chaque agent est conçu pour un client. Mais ces 8 briques donnent une idée de ce qu'on sait faire vite, parce qu'on l'a déjà fait. Si la vôtre n'est pas là, on la construit.</p>
-
-    <div class="sur-mesure-headline">
-      <p>Notre conviction : <strong>votre métier n'est pas celui d'à côté</strong>. On part de votre quotidien, pas d'un menu standard. Et chaque nouveau projet enrichit ce qu'on sait faire pour les suivants.</p>
-    </div>
-
-    <div class="solutions-grid">
-
-      <div class="solu-card featured">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L9.91 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div>
-        <h4>Messagerie qualifiée &amp; accueil</h4>
-        <p>Un agent vocal accueille l'appel quand l'équipe est occupée. Il qualifie : motif, interlocuteur demandé, urgence, dispos. L'équipe rappelle en 1 clic depuis l'interface. <strong style="color:#fff;">L'agenda reste à 100 % entre vos mains.</strong></p>
-      </div>
-
-      <div class="solu-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <h4>Prise de rendez-vous autonome</h4>
-        <p>Quand vous êtes prêts : l'agent consulte le planning, propose des créneaux, confirme. Garde-fous décidés ensemble (cas sensibles toujours arbitrés par l'équipe).</p>
-      </div>
-
-      <div class="solu-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <h4>Tri &amp; réponse aux mails</h4>
-        <p>Lecture, classement, priorisation, alertes sur les urgents, brouillons de réponses pré-rédigées. Vous validez en 2 secondes au lieu d'écrire en 10 minutes.</p>
-      </div>
-
-      <div class="solu-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-        <h4>Réseaux sociaux &amp; contenu</h4>
-        <p>Génération de posts (texte + image), planning éditorial, réponses aux DM, modération des commentaires. Votre voix de marque, jamais générique.</p>
-      </div>
-
-      <div class="solu-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
-        <h4>Relances clients &amp; suivi</h4>
-        <p>Devis non signés relancés avec tact. Factures impayées rattrapées. Clients dormants réveillés. Rappels J-1, suivis post-prestation J+3.</p>
-      </div>
-
-      <div class="solu-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
-        <h4>Tri intelligent des courriers</h4>
-        <p>Papier ou numérique. Mutuelles, sécu, factures, prises de contact, contrats. Lecture, classement, alertes. Plus de pile sur le bureau.</p>
-      </div>
-
-      <div class="solu-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-        <h4>Gestion de stock &amp; commandes</h4>
-        <p>Suivi des niveaux, alertes seuil, commandes fournisseurs pré-rédigées, rapprochement bons de livraison. L'inventaire qui se tient tout seul.</p>
-      </div>
-
-      <div class="solu-card">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg></div>
-        <h4>Reporting &amp; tableaux de bord</h4>
-        <p>Synthèses claires, mensuelles ou à la demande. Une page lisible, pas un Excel à éplucher. KPIs métier, alertes, recommandations.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ========== EXEMPLE CONCRET — VOLX ========== -->
-<section id="cabinet-pilote">
-  <div class="wrap">
-    <span class="eyebrow">Premier client · Exemple concret</span>
-    <h2>Pour ne pas vous parler en théorie. <span class="it">Voici notre tout premier client en production.</span></h2>
-    <p class="lead">C'est un cabinet dentaire — le Cabinet Dentaire de Volx (04). Pas parce que Sol·IA se limite au médical, mais parce qu'il fallait un premier terrain exigeant pour faire nos preuves : RGPD strict, urgences, équipe sur le qui-vive. Aujourd'hui c'est l'exemple le plus complet à montrer, le parcours qu'on reproduit (adapté à votre métier) à chaque nouveau projet.</p>
-
-    <div class="volx-hero">
-      <div class="volx-text">
-        <p>Le déploiement s'est fait <strong>en 4 semaines</strong>, du premier appel découverte à la mise en production : entretien avec les 3 praticiens, écoute des 4 assistantes, conception du prompt de l'agent vocal avec leurs propres mots, configuration de l'interface, installation matérielle, formation, et bascule de la ligne cabinet.</p>
-        <p>Le cabinet tourne en <strong>100 % autonomie technique</strong> : hébergement français, données patients chiffrées, conformité RGPD/HDS, conservation contrôlée. Une hotline directe 7j/24h pour les assistantes, disponible en continu. Et un suivi mensuel des métriques pour ajuster le prompt en continu.</p>
-        <div class="volx-quote">« On voulait que l'IA nous aide, pas qu'elle nous remplace. Sol·IA a passé des heures à écouter nos assistantes. Le résultat, c'est un outil qu'elles ont validé avant qu'il ne tourne. Et qui leur retire la pire partie de leur journée. »
-          <span class="signe">— Le Cabinet Dentaire de Volx</span>
-        </div>
-        <p style="margin-top:24px;padding:18px 22px;background:linear-gradient(90deg,rgba(16,185,129,0.08),rgba(16,185,129,0.02));border-left:3px solid var(--vert);border-radius:10px;font-size:0.96rem"><strong style="color:var(--vert)">Méthode transposable.</strong> Pour un commerçant, un cabinet libéral, un artisan ou une PME, on repart de zéro sur l'écoute terrain — mais on garde la même structure de projet : 4 semaines, hotline en continu, ajustement continu.</p>
-      </div>
-      <div class="volx-stats">
-        <h4>Le cabinet en chiffres</h4>
-        <div class="volx-stat"><div class="num">3 praticiens</div><div class="lbl">Équipe soignante au complet</div></div>
-        <div class="volx-stat"><div class="num">4 assistantes</div><div class="lbl">Formées en 1h sur l'interface Sol·IA</div></div>
-        <div class="volx-stat"><div class="num">4 semaines</div><div class="lbl">De la signature à la production</div></div>
-        <div class="volx-stat"><div class="num">24h/24 · 7j/7</div><div class="lbl">L'agent est disponible quand l'équipe ne peut pas l'être</div></div>
-        <div class="volx-stat"><div class="num">100 % France</div><div class="lbl">Hébergement, conformité, équipe</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== GARANTIES RGPD/HDS ========== -->
-<section id="garanties" class="soft">
-  <div class="wrap">
-    <span class="eyebrow">RGPD · HDS · Conformité</span>
-    <h2>Vos données, <span class="it">traitées comme on aimerait que les nôtres le soient.</span></h2>
-    <p class="lead">Patients, clients, prospects, dossiers internes : données sensibles = obligations strictes. Notre cadre juridique a été conçu pour le secteur de la santé (le plus exigeant), il s'applique <em>a fortiori</em> à tous les autres : DPA signé, hébergement souverain, contrôle de la durée de conservation, droit d'accès et d'effacement effectifs. Que vous soyez cabinet dentaire, e-commerce, restaurant ou conciergerie, le standard reste le même.</p>
-
-    <div class="garanties">
-      <div class="garantie">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/></svg></div>
-        <div><h4>Hébergement souverain</h4><p>Données patients stockées sur infrastructure française. Pas de transfert hors UE. Aucun GAFAM sur la chaîne de traitement médical.</p></div>
-      </div>
-      <div class="garantie">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <div><h4>Chiffrement bout-en-bout</h4><p>Transmission TLS, stockage chiffré, accès par jetons révocables. Les enregistrements vocaux sont supprimés selon une politique définie avec vous.</p></div>
-      </div>
-      <div class="garantie">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-        <div><h4>DPA &amp; Contrat de Service</h4><p>Pack juridique complet : Contrat de Service, Accord de Traitement de Données (DPA) conforme à l'art. 28 RGPD, affiche d'information patients pour la salle d'attente.</p></div>
-      </div>
-      <div class="garantie">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-        <div><h4>Pas de décision automatisée</h4><p>Conformément à l'art. 22 RGPD : Célia qualifie, l'assistante décide. Aucune action automatisée sur l'agenda, aucune décision médicale automatisée.</p></div>
-      </div>
-      <div class="garantie">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-        <div><h4>Configuration maîtrisée</h4><p>Vous fixez avec nous ce que Célia peut dire, ce qu'elle ne peut pas dire, à qui transférer, quand alerter. Le prompt est versionné, auditable.</p></div>
-      </div>
-      <div class="garantie">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3 3 0 1 0 6 0 3 3 0 0 0-6 0z"/><path d="M17.8 11.8a6 6 0 0 0-11.6 0M12 17a5 5 0 0 0 5-5"/></svg></div>
-        <div><h4>Affiche patients en salle d'attente</h4><p>Affiche RGPD prête à imprimer fournie : informe les patients de l'enregistrement, du traitement IA, et de leurs droits. Conforme aux exigences CNIL.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== TARIFICATION ========== -->
-<section id="tarifs" class="dark">
-  <div class="wrap">
-    <span class="eyebrow">Tarification</span>
-    <h2>Une tarification sur-mesure, <span class="it">comme l'agent qu'on vous construit.</span></h2>
-    <p class="tarif-intro">Pas de grille tarifaire figée, parce qu'on ne fait pas deux fois le même projet. Sol·IA propose un <strong>setup d'installation unique</strong> (configuration, formation, mise en production) puis un <strong>abonnement mensuel</strong> couvrant l'hébergement, les évolutions du prompt, le support et les outils refacturés. Les fourchettes ci-dessous donnent un ordre d'idée — le vrai chiffre, c'est le devis détaillé qu'on vous remet après l'échange découverte. <strong>On ne vend pas avant d'avoir compris.</strong></p>
-
-    <div class="tarif-grid">
-      <div class="tarif-card">
-        <div class="typ">Installation · setup unique</div>
-        <div class="montant">À partir de 500 € <span>HT</span></div>
-        <div class="desc">Selon le périmètre choisi et la complexité du projet (nombre d'utilisateurs, intégrations avec vos outils, niveau d'autonomie de l'agent).</div>
-        <ul class="liste">
-          <li>Entretien dirigeant + équipe</li>
-          <li>Configuration sur-mesure de l'agent</li>
-          <li>Installation &amp; mise en service</li>
-          <li>Formation équipe (1h) + supports écrits</li>
-          <li>Pack juridique (Contrat + DPA + affiche RGPD si applicable)</li>
-        </ul>
-      </div>
-      <div class="tarif-card">
-        <div class="typ">Abonnement mensuel</div>
-        <div class="montant">À partir de 290 € <span>HT/mois</span></div>
-        <div class="desc">Hébergement souverain, support, ajustement continu du prompt, suivi mensuel des métriques. Outils techniques (téléphonie, plateforme IA, hébergement) refacturés au coût réel.</div>
-        <ul class="liste">
-          <li>Hotline 7j/24h en continu</li>
-          <li>Ajustement continu du prompt</li>
-          <li>Reporting mensuel (volume, motifs, qualité)</li>
-          <li>Évolutions de fonctionnalités incluses</li>
-          <li>Engagement minimum 6 mois — puis sans engagement</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="tarif-note">
-      <strong>Transparence :</strong> les outils techniques refacturés (téléphonie, plateforme vocale IA, hébergement) sont facturés au coût réel — on ne marge pas dessus. Le montant dépend de ce qu'on met en place pour vous, on vous le détaille au devis.
-      <span class="parrainage">💚 Programme parrainage : 10 % de remise sur les outils techniques refacturés pour le parrain · 15 % de remise sur le setup pour le nouveau client.</span>
-    </div>
-  </div>
-</section>
-
-<!-- ========== CONTACT ========== -->
-<section id="contact">
-  <div class="wrap">
-    <span class="eyebrow">Échange découverte</span>
-    <h2>On commence par <span class="it">se parler.</span></h2>
-    <p class="lead">Pas de pitch commercial, pas de slide deck. 30 minutes pour comprendre votre activité, identifier la tâche qui vous prend du temps inutilement, et voir si Sol·IA peut vous être utile. Si oui, on vous prépare un devis sur-mesure. Sinon, on vous le dit clairement.</p>
-
-    <div class="contact-grid">
-      <div class="contact-text">
-        <p>Cet échange est <strong>gratuit et sans engagement</strong>. Il se fait par téléphone, en visio ou en présentiel, selon votre préférence. Vous pouvez aussi nous écrire directement par email — on répond dans la journée.</p>
-        <p>Si vous souhaitez voir l'agent vocal en démonstration live, précisez-le dans votre message : on peut organiser une démonstration depuis le Cabinet Dentaire de Volx.</p>
-
-        <div class="contact-coords">
-          <a class="contact-row" href="mailto:sol.ia.agence@gmail.com">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
-            <div class="info"><div class="lbl">Email</div><div class="val">sol.ia.agence@gmail.com</div></div>
-          </a>
-          <a class="contact-row" href="https://instagram.com/sol.ia.agence" target="_blank" rel="noopener">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-            <div class="info"><div class="lbl">Instagram</div><div class="val">@sol.ia.agence</div></div>
-          </a>
-          <div class="contact-row">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-            <div class="info"><div class="lbl">Délai de réponse</div><div class="val">Sous 24h ouvrées · Lundi–Vendredi 9h–19h</div></div>
-          </div>
+          <button class="enode e1 node" data-num="01" data-title="Qui est Sol·IA"
+            data-body="Nous construisons des agents IA sur-mesure qui prennent en charge vos tâches répétitives : accueil téléphonique, prise de rendez-vous, tri et qualification des messages, réponses aux mails, gestion des réseaux sociaux, suivi de stock, courriers, devis…">
+            <span class="lbl"><span class="ndot"></span>Qui est Sol·IA</span></button>
+          <button class="enode e2 node" data-num="02" data-title="Comment ça marche"
+            data-body="On ne vous livre pas une boîte noire. On construit avec vous, étape par étape : on cadre vos besoins, on conçoit l'agent, on le teste sur vos cas réels, puis on le met en production — avec un accompagnement continu.">
+            <span class="lbl"><span class="ndot"></span>Comment ça marche</span></button>
+          <button class="enode e3 node" data-num="03" data-title="Pour qui"
+            data-body="Tous secteurs, tous métiers. De l'indépendant à la PME, dès que des tâches répétitives mangent votre temps, un agent Sol·IA peut les prendre en charge.">
+            <span class="lbl"><span class="ndot"></span>Pour qui</span></button>
+          <button class="enode e4 node" data-num="04" data-title="Réalisations possibles"
+            data-body="Accueil téléphonique intelligent, tri et qualification de messages, relances clients, génération de contenu pour les réseaux, rédaction de devis et courriers, suivi de stock…">
+            <span class="lbl"><span class="ndot"></span>Réalisations possibles</span></button>
+          <button class="enode e5 node" data-num="05" data-title="Cabinet dentaire de Volx"
+            data-body="Au Cabinet Dentaire de Volx, notre assistante vocale Célia accueille les appels, qualifie chaque demande et la transmet à l'équipe, qui rappelle. Résultat : plus aucun appel perdu, et des assistantes libérées du téléphone.">
+            <span class="lbl"><span class="ndot"></span>Exemple concret</span></button>
+          <button class="enode e6 node" data-num="06" data-title="Tarifs"
+            data-body="Setup à partir de 500 € HT, honoraires 400 € HT/mois, frais d'outils refacturés sans marge, appels à l'usage. Hotline incluse. Parrainage : 10 % parrain / 15 % filleul.">
+            <span class="lbl"><span class="ndot"></span>Tarifs</span></button>
         </div>
       </div>
+    </section>
 
-      <form class="contact-form" onsubmit="return handleContact(event)">
-        <h3>Demande d'échange découverte</h3>
-        <p class="form-sub">Remplissez ce formulaire — on vous rappelle dans la journée.</p>
-        <div class="field">
-          <label for="cf-nom">Nom &amp; prénom</label>
-          <input type="text" id="cf-nom" name="nom" required autocomplete="name">
-        </div>
-        <div class="field">
-          <label for="cf-cabinet">Nom du cabinet</label>
-          <input type="text" id="cf-cabinet" name="cabinet" required>
-        </div>
-        <div class="field">
-          <label for="cf-metier">Votre secteur</label>
-          <select id="cf-metier" name="metier">
-            <option value="sante">Santé · médical · dentaire · paramédical · vétérinaire</option>
-            <option value="liberal">Profession libérale · avocat · notaire · expert-comptable · architecte</option>
-            <option value="commerce">Commerce · artisanat · restauration · hôtellerie</option>
-            <option value="services">Services · PME · agence · conseil · immobilier</option>
-            <option value="ecommerce">E-commerce · marque · créateur · indépendant</option>
-            <option value="industrie">Industrie · BTP · logistique · transport</option>
-            <option value="autre">Autre — on en parle</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="cf-email">Email professionnel</label>
-          <input type="email" id="cf-email" name="email" required autocomplete="email">
-        </div>
-        <div class="field">
-          <label for="cf-tel">Téléphone du cabinet</label>
-          <input type="tel" id="cf-tel" name="tel" autocomplete="tel">
-        </div>
-        <div class="field">
-          <label for="cf-sujet">Pourquoi vous nous contactez ?</label>
-          <select id="cf-sujet" name="sujet">
-            <option value="decouverte">Échange découverte général</option>
-            <option value="telephone">Téléphone &amp; accueil</option>
-            <option value="mails">Tri &amp; réponse aux mails</option>
-            <option value="reseaux">Réseaux sociaux &amp; contenu</option>
-            <option value="gestion">Gestion opérationnelle (stock, devis, relances)</option>
-            <option value="courriers">Tri courriers</option>
-            <option value="demo-volx">Voir un agent en démo (Cabinet Dentaire de Volx)</option>
-            <option value="autre">Autre besoin sur-mesure</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="cf-message">Votre message (optionnel)</label>
-          <textarea id="cf-message" name="message" placeholder="Quelques mots sur votre activité et la tâche qui vous prend le plus de temps actuellement…"></textarea>
-        </div>
-        <button type="submit">Envoyer la demande
-          <svg style="display:inline;vertical-align:-3px;margin-left:6px;width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
-        <p class="rgpd-note">Les informations transmises sont utilisées uniquement pour vous recontacter. Aucun usage commercial tiers. Conformité RGPD.</p>
-      </form>
-    </div>
-  </div>
-</section>
+    <section class="contact-section" id="contact">
+      <p class="section-eyebrow">Échange découverte</p>
+      <h2>On commence par <span class="accent">se parler</span>.</h2>
+      <p class="lead">Pas de pitch commercial, 30 minutes pour cerner votre activité et identifier les tâches qui vous prennent du temps.</p>
+      <button class="cta-contact" id="contactBtn">Contactez-nous <span>→</span></button>
+    </section>
 
-<!-- ========== FOOTER ========== -->
-<footer>
-  <div class="wrap">
-    <div class="footer-logo">Sol<span class="dot">·IA</span></div>
-    <div class="footer-slogan">« Votre quotidien, enfin allégé. »</div>
-
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h5>L'agence</h5>
-        <a href="#agence">Qui sommes-nous</a>
-        <a href="#cabinet-pilote">Exemple Volx</a>
-        <a href="#garanties">RGPD / HDS</a>
-        <a href="mailto:sol.ia.agence@gmail.com">Nous écrire</a>
-      </div>
-      <div class="footer-col">
-        <h5>Solutions</h5>
-        <a href="#solutions">Téléphone &amp; accueil</a>
-        <a href="#solutions">Mails &amp; courriers</a>
-        <a href="#solutions">Réseaux sociaux</a>
-        <a href="#solutions">Gestion opérationnelle</a>
-      </div>
-      <div class="footer-col">
-        <h5>Contact</h5>
+    <footer class="closing">
+      <p class="closing-phrase">« Votre quotidien, <span class="accent">enfin allégé.</span> »</p>
+      <p class="closing-sub">Sol·IA — l'agence qui construit, avec vous, vos agents IA sur-mesure.</p>
+      <div class="closing-contact">
         <a href="mailto:sol.ia.agence@gmail.com">sol.ia.agence@gmail.com</a>
-        <a href="https://instagram.com/sol.ia.agence" target="_blank" rel="noopener">Instagram · @sol.ia.agence</a>
+        <a href="https://instagram.com/sol.ia.agence" target="_blank" rel="noopener">
+          <svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+          @sol.ia.agence
+        </a>
       </div>
-    </div>
+    </footer>
+  </div>
 
-    <div class="footer-legal">
-      <p><strong>Sol·IA</strong> — micro-entreprise · <strong>Victorine GRIFFANTI</strong> · SIRET 103 392 999 00019</p>
-      <p style="margin-top:8px">© 2026 Sol·IA · Tous droits réservés · <a href="#" onclick="alert('Mentions légales : Sol·IA est une micro-entreprise enregistrée sous le SIRET 103 392 999 00019. Directrice de la publication : Victorine GRIFFANTI. Hébergement : à préciser à la mise en ligne.');return false;" style="text-decoration:underline">Mentions légales</a> · <a href="#" onclick="alert('Politique de confidentialité disponible sur demande à sol.ia.agence@gmail.com');return false;" style="text-decoration:underline">Politique de confidentialité</a></p>
+  <!-- ============ PAGE-SUJET (ouverture animee) ============ -->
+  <div id="topic">
+    <button class="topic-back" id="topicBack">← Retour</button>
+    <div class="topic-inner">
+      <span class="topic-num" id="topicNum"></span>
+      <h2 class="topic-title" id="topicTitle"></h2>
+      <div class="topic-body" id="topicBody"></div>
     </div>
   </div>
-</footer>
-
-<!-- Bouton retour en haut -->
-<button class="scroll-top" aria-label="Retour en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <line x1="12" y1="19" x2="12" y2="5"/>
-    <polyline points="5 12 12 5 19 12"/>
-  </svg>
-</button>
 
 <script>
-// Fermeture menu mobile au clic sur un lien
-document.querySelectorAll('.nav-menu a').forEach(a => {
-  a.addEventListener('click', () => document.querySelector('.nav-menu').classList.remove('open'));
-});
+  var hero=document.getElementById('hero');
+  var logo=document.getElementById('logo');
+  var halo=document.getElementById('halo');
+  var baseline=document.getElementById('baseline');
+  var scrollHint=document.getElementById('scrollHint');
+  var topbar=document.getElementById('topbar');
 
-// Bouton scroll-to-top : visible après 400px de scroll
-const scrollTopBtn = document.querySelector('.scroll-top');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 400) {
-    scrollTopBtn.classList.add('visible');
-  } else {
-    scrollTopBtn.classList.remove('visible');
+  var MAX_SCALE=14;
+  function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
+
+  function update(){
+    var zoneH=window.innerHeight*2.2;
+    var p=clamp(window.scrollY/zoneH,0,1);
+
+    var scale=1+Math.pow(p,1.6)*(MAX_SCALE-1);
+    var st=logo.parentElement;
+    var base=st.clientWidth||st.getBoundingClientRect().width||320;
+    var sz=(base*scale).toFixed(1);
+    logo.style.width=sz+'px'; logo.style.height=sz+'px';
+
+    var haloFade=clamp(1-p/0.5,0,1);
+    halo.style.opacity=haloFade;
+
+    baseline.style.opacity=clamp(1-p/0.3,0,1);
+    scrollHint.style.opacity=clamp(1-p/0.22,0,1);
+
+    var fade=clamp((p-0.55)/0.4,0,1);
+    hero.style.opacity=(1-fade).toFixed(3);
+    hero.style.pointerEvents=p>0.6?'none':'auto';
+
+    var show=p>0.8;
+    topbar.style.opacity=show?'1':'0';
+    topbar.style.pointerEvents=show?'auto':'none';
   }
-});
 
-// Gestion formulaire contact → mailto pré-rempli (V1 sans backend)
-function handleContact(e) {
-  e.preventDefault();
-  const f = e.target;
-  const nom = f.nom.value.trim();
-  const cabinet = f.cabinet.value.trim();
-  const metier = f.metier.options[f.metier.selectedIndex].text;
-  const email = f.email.value.trim();
-  const tel = f.tel.value.trim();
-  const sujet = f.sujet.options[f.sujet.selectedIndex].text;
-  const message = f.message.value.trim();
+  var ticking=false;
+  window.addEventListener('scroll',function(){
+    if(!ticking){requestAnimationFrame(function(){update();ticking=false;});ticking=true;}
+  },{passive:true});
+  window.addEventListener('resize',update);
+  update();
 
-  const subject = encodeURIComponent(`[Sol·IA] ${sujet} — ${cabinet}`);
-  const body = encodeURIComponent(
-    `Nom : ${nom}\n` +
-    `Cabinet : ${cabinet}\n` +
-    `Métier : ${metier}\n` +
-    `Email : ${email}\n` +
-    `Téléphone : ${tel || '—'}\n` +
-    `Sujet : ${sujet}\n\n` +
-    `Message :\n${message || '(aucun message)'}\n\n` +
-    `— Envoyé depuis le formulaire de contact solia-agence.fr`
-  );
-
-  window.location.href = `mailto:sol.ia.agence@gmail.com?subject=${subject}&body=${body}`;
-  return false;
-}
-
-// Effet de scroll sur la nav
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav');
-  if (window.scrollY > 50) {
-    nav.style.background = 'rgba(9,9,15,0.95)';
-    nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
-  } else {
-    nav.style.background = 'rgba(9,9,15,0.85)';
-    nav.style.boxShadow = 'none';
+  /* ====== Champ de particules (page 2) ====== */
+  var cv=document.getElementById('field');
+  if(cv){
+    var cx2=cv.getContext('2d'), CW=1, CH=1, parts=[], mp={x:-999,y:-999};
+    function csize(){ var r=cv.getBoundingClientRect(); CW=cv.width=Math.max(1,Math.round(r.width)); CH=cv.height=Math.max(1,Math.round(r.height)); }
+    csize(); window.addEventListener('resize',csize);
+    window.addEventListener('mousemove',function(e){ var r=cv.getBoundingClientRect(); mp.x=e.clientX-r.left; mp.y=e.clientY-r.top; });
+    for(var k=0;k<70;k++){ parts.push({x:Math.random()*CW,y:Math.random()*CH,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}); }
+    function ptick(){
+      cx2.clearRect(0,0,CW,CH);
+      for(var i=0;i<parts.length;i++){
+        var p=parts[i]; p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>CW) p.vx*=-1; if(p.y<0||p.y>CH) p.vy*=-1;
+        var dxm=p.x-mp.x, dym=p.y-mp.y, dm=Math.sqrt(dxm*dxm+dym*dym);
+        if(dm<140){ cx2.strokeStyle='rgba(139,92,246,'+(0.5*(1-dm/140))+')'; cx2.lineWidth=.6; cx2.beginPath(); cx2.moveTo(p.x,p.y); cx2.lineTo(mp.x,mp.y); cx2.stroke(); }
+        cx2.fillStyle='rgba(167,139,250,0.6)'; cx2.beginPath(); cx2.arc(p.x,p.y,1.5,0,6.283); cx2.fill();
+        for(var j=i+1;j<parts.length;j++){ var q=parts[j], dx=p.x-q.x, dy=p.y-q.y, d=Math.sqrt(dx*dx+dy*dy);
+          if(d<92){ cx2.strokeStyle='rgba(139,92,246,'+(0.15*(1-d/92))+')'; cx2.lineWidth=.5; cx2.beginPath(); cx2.moveTo(p.x,p.y); cx2.lineTo(q.x,q.y); cx2.stroke(); } }
+      }
+      requestAnimationFrame(ptick);
+    }
+    ptick();
   }
-});
+
+  /* ====== Apparition de la constellation ====== */
+  var constel=document.getElementById('constel');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:0.25});
+  if(constel) io.observe(constel);
+
+  /* ====== Clic sur un sujet -> ouverture animee de la page ====== */
+  var topic=document.getElementById('topic');
+  var tNum=document.getElementById('topicNum');
+  var tTitle=document.getElementById('topicTitle');
+  var tBody=document.getElementById('topicBody');
+
+  var BODIES={
+    '01':"<p>Sol·IA est une <strong>agence créatrice d'agents IA sur-mesure</strong>. Pas un logiciel sur étagère : on ne vous vend pas un produit tout fait, on construit avec vous <strong>l'agent qui vous manque</strong> — et seulement celui-là. Vous décidez du périmètre, du ton et des limites.</p><p>Née d'un constat simple : dans presque tous les métiers, une tâche répétitive pèse sur l'équipe sans rien apporter au cœur du travail. Notre métier, c'est de <strong>retirer cette tâche-là</strong>, proprement, avec un agent conçu pour votre quotidien réel.</p><p>Co-fondée par <strong>Johann</strong> et <strong>Victorine</strong>, Sol·IA est une micro-entreprise française basée dans les Alpes-de-Haute-Provence (04).</p><ul><li><strong>Agence sur-mesure</strong> — un agent par client, configuré pour votre quotidien</li><li><strong>Données en France</strong> — RGPD strict, secteurs sensibles maîtrisés</li><li><strong>Pas un chatbot générique</strong> — un agent pour une tâche précise, qui la fait bien</li></ul>",
+    '02':"<p>On commence toujours par <strong>se parler</strong> : 30 minutes pour cerner votre activité et repérer ce qui vous prend du temps inutilement. Pas de pitch, pas de slides.</p><ul><li>Échange découverte — gratuit, sans engagement</li><li>Écoute du terrain : on conçoit l'agent avec vos propres mots</li><li>Configuration sur-mesure + tests sur vos cas réels</li><li>Installation, formation de l'équipe, mise en production</li><li>Suivi mensuel et ajustement continu</li></ul><p>Comptez environ <strong>3 semaines</strong> pour passer de la première discussion à un agent qui tourne pour de vrai.</p>",
+    '03':"<p><strong>Tous secteurs, tous métiers.</strong> De l'indépendant à la PME : dès que des tâches répétitives vous détournent de <span class='w'>votre cœur de métier</span>, un agent Sol·IA peut les prendre en charge.</p><p>Chaque déploiement a sa propre <span class='w'>configuration sur-mesure</span>, avec des garde-fous décidés ensemble : l'IA n'agit jamais <span class='w'>à l'aveugle</span>.</p>",
+    '04':"<p>Chaque agent est <span class='w'>sur-mesure</span>. Voici les réalisations <span class='w'>les plus demandées</span> — on choisit ensemble lesquelles, et dans quel ordre :</p><ul><li><strong>Accueil téléphonique</strong> — un agent vocal accueille et qualifie les appels quand vous êtes occupé, puis transmet pour rappel.</li><li><strong>Prise de rendez-vous</strong> — proposition de créneaux et confirmation, sous garde-fous.</li><li><strong>Relances</strong> — rappels, suivis, devis non signés relancés avec tact.</li><li><strong>Tri et courriers</strong> — lecture, classement, alertes ; fini la pile sur le bureau.</li><li><strong>Réseaux sociaux et contenu</strong> — génération de publications dans votre ton.</li><li><strong>Reporting</strong> — une synthèse claire en fin de mois, pas un tableur.</li></ul><p>Ce ne sont que des exemples : si une tâche répétitive vous pèse, Sol·IA peut très probablement la <span class='w'>confier à un agent sur-mesure</span>.</p>",
+    '05':"<p>Le <span class='w'>Cabinet dentaire de Volx</span> (04) — <span class='w'>plusieurs praticiens</span> — utilise Sol·IA en production. Notre assistante vocale, <strong>Célia</strong>, accueille les appels que l'équipe ne peut pas décrocher, les qualifie (motif, praticien, urgence) et les <span class='w'>classe automatiquement par praticien</span> dans l'interface ci-dessous. L'équipe rappelle quand elle peut : plus aucun appel ne se perd.</p><div class='demo-row'><button class='demo-btn' type='button'><span class='pl'></span> Voir une démonstration</button><span class='demo-note'>Un appel qualifié par Célia, classé au bon praticien</span></div><div class='assistant-ui'><div class='aui-top'><span class='dotrow'><i></i><i></i><i></i></span><b>Interface assistante</b> · Sol·IA <span class='live'>EN DIRECT</span></div><div class='call-banner'><span class='ring'>📞</span><span class='ctxt'><b>Appel entrant…</b><small>Célia répond et qualifie la demande</small></span></div><div class='chat'></div><div class='aui-cols'><div class='aui-col' data-col='a'><h4><span class='pdot'></span>Dr A. <span class='ct'>1</span></h4><div class='dcard'><div class='m'>Rendez-vous — contrôle annuel</div><div class='b'><span class='t'>RDV</span><span class='cb'>Rappeler ↩</span></div></div></div><div class='aui-col' data-col='b'><h4><span class='pdot'></span>Dr B. <span class='ct'>1</span></h4><div class='dcard'><div class='m'>Question post-opératoire</div><div class='b'><span class='t'>Suivi</span><span class='cb'>Rappeler ↩</span></div></div></div><div class='aui-col' data-col='c'><h4><span class='pdot'></span>Dr C. <span class='ct'>1</span></h4><div class='dcard'><div class='m'>Demande de devis prothèse</div><div class='b'><span class='t'>Admin</span><span class='cb'>Rappeler ↩</span></div></div></div></div></div><ul><li>Classement <span class='w'>automatique par praticien</span></li><li>Conçu <span class='w'>sur-mesure</span> avec les assistantes et les praticiens du cabinet</li><li>Hébergement 100 % France · RGPD / HDS</li></ul><p class='quote'>« On voulait que l'IA nous aide, pas qu'elle nous remplace. Le résultat, c'est un outil validé par l'équipe avant même qu'il ne tourne. »</p>",
+    '06':"<p class='tarif-lead'>Une tarification <span class='accent'>sur-mesure</span>, comme l'agent qu'on construit pour vous.</p><p class='tarif-intro'>Sol·IA propose un <strong>setup d'installation unique</strong> (configuration, formation, mise en production) puis un <strong>abonnement mensuel</strong> couvrant l'hébergement, les évolutions du prompt, le support et les outils refacturés. Les fourchettes ci-dessous donnent un ordre d'idée — le vrai chiffre, c'est le devis détaillé qu'on vous remet après l'échange découverte. <strong>On ne vend pas avant d'avoir compris.</strong></p><div class='tarif-grid'><div class='tarif-card'><div class='typ'>Installation · setup unique</div><div class='montant'>À partir de 500 € <span>HT</span></div><div class='desc'>Selon le périmètre choisi et la complexité du projet (nombre d'utilisateurs, intégrations avec vos outils, niveau d'autonomie de l'agent).</div><ul class='liste'><li>Entretien dirigeant + équipe</li><li>Configuration sur-mesure de l'agent</li><li>Installation &amp; mise en service</li><li>Formation équipe (1h) + supports écrits</li><li>Pack juridique (Contrat + DPA + affiche RGPD si applicable)</li></ul></div><div class='tarif-card'><div class='typ'>Abonnement mensuel</div><div class='montant'>À partir de 290 € <span>HT/mois</span></div><div class='desc'>Hébergement souverain, support, ajustement continu du prompt, suivi mensuel des métriques. Outils techniques (téléphonie, plateforme IA, hébergement) refacturés au coût réel.</div><ul class='liste'><li>Hotline 7j/24h en continu</li><li>Ajustement continu du prompt</li><li>Reporting mensuel (volume, motifs, qualité)</li><li>Évolutions de fonctionnalités incluses</li><li>Engagement minimum 6 mois — puis sans engagement</li></ul></div></div><div class='tarif-note'><strong>Transparence :</strong> les outils techniques refacturés (téléphonie, plateforme vocale IA, hébergement) sont facturés au coût réel — on ne marge pas dessus. Le montant dépend de ce qu'on met en place pour vous, on vous le détaille au devis.<span class='parrainage'>Programme parrainage : 10 % de remise sur les outils techniques refacturés pour le parrain · 15 % de remise sur le setup pour le nouveau client.</span></div>"
+  };
+
+  var TITLES={
+    '01':"Qui est <span class='accent'>Sol·IA</span>",
+    '02':"Comment ça <span class='accent'>marche</span>",
+    '03':"Pour <span class='accent'>qui</span>",
+    '04':"Réalisations <span class='accent'>possibles</span>",
+    '05':"Cabinet dentaire de <span class='accent'>Volx</span>",
+    '06':"Tarifs"
+  };
+  document.querySelectorAll('.node').forEach(function(node){
+    node.addEventListener('click',function(){
+      var r=node.getBoundingClientRect();
+      topic.style.setProperty('--cx',(r.left+r.width/2)+'px');
+      topic.style.setProperty('--cy',(r.top+r.height/2)+'px');
+      tNum.textContent='— '+node.dataset.num;
+      tTitle.innerHTML=TITLES[node.dataset.num]||node.dataset.title;
+      tBody.innerHTML=BODIES[node.dataset.num]||'';
+      topic.scrollTop=0;
+      requestAnimationFrame(function(){ topic.classList.add('open'); });
+      document.body.style.overflow='hidden';
+    });
+  });
+  /* ====== Démo Célia (page Exemple concret) ====== */
+  var demoTimers=[];
+  tBody.addEventListener('click',function(e){
+    var btn=e.target.closest ? e.target.closest('.demo-btn') : null;
+    if(!btn) return;
+    var ui=tBody.querySelector('.assistant-ui'); if(!ui) return;
+    var banner=ui.querySelector('.call-banner');
+    var chat=ui.querySelector('.chat');
+    var col=ui.querySelector(".aui-col[data-col='b']");
+    demoTimers.forEach(clearTimeout); demoTimers=[];
+    var old=ui.querySelector('.dcard.fresh'); if(old) old.parentNode.removeChild(old);
+    banner.classList.add('on');
+    banner.querySelector('.ctxt b').textContent='Appel en cours…';
+    banner.querySelector('.ctxt small').textContent='Transcription en direct';
+    if(chat){ chat.classList.add('on'); chat.innerHTML=''; }
+    var dlg=[
+      ['celia','Célia',"Cabinet dentaire, bonjour, Célia à l'appareil. Comment puis-je vous aider ?"],
+      ['patient','Appelant',"Bonjour, j'ai très mal à une dent depuis hier soir, et c'est gonflé."],
+      ['celia','Célia',"Je suis désolée. La douleur est-elle vive, pulsatile ?"],
+      ['patient','Appelant',"Oui, je n'ai presque pas dormi de la nuit."],
+      ['celia','Célia',"Je note une urgence. Quel praticien suivez-vous habituellement ?"],
+      ['patient','Appelant',"Le Dr B."],
+      ['celia','Célia',"C'est noté. L'assistante du Dr B. vous rappelle au plus vite pour vous placer."]
+    ];
+    var t=500;
+    dlg.forEach(function(m){
+      demoTimers.push(setTimeout(function(){
+        if(!chat) return;
+        var el=document.createElement('div'); el.className='msg '+m[0];
+        el.innerHTML="<span class='nm'>"+m[1]+"</span>"+m[2];
+        chat.appendChild(el); chat.scrollTop=chat.scrollHeight;
+      },t));
+      t+=1900;
+    });
+    demoTimers.push(setTimeout(function(){
+      if(col){
+        var d=document.createElement('div'); d.className='dcard fresh';
+        d.innerHTML="<div class='m'>Douleur + gonflement depuis hier soir</div><div class='b'><span class='t urg'>URGENCE</span><span class='cb'>Rappeler ↩</span></div>";
+        col.insertBefore(d, col.children[1]||null);
+        var ct=col.querySelector('.ct'); if(ct) ct.textContent=(parseInt(ct.textContent,10)||0)+1;
+      }
+      banner.querySelector('.ctxt b').textContent='Demande qualifiée ✓';
+      banner.querySelector('.ctxt small').textContent='Classée chez le Dr B. · urgence';
+    },t+250));
+    demoTimers.push(setTimeout(function(){ banner.classList.remove('on'); },t+2400));
+  });
+
+  /* ====== Formulaire de contact (démo) ====== */
+  document.addEventListener('submit',function(e){
+    var form=e.target.closest ? e.target.closest('.cform') : null;
+    if(!form) return;
+    e.preventDefault();
+    form.classList.add('sent');
+  });
+
+  /* ====== Bouton « Contactez-nous » -> formulaire en overlay ====== */
+  var CONTACT_FORM="<form class='cform'><div class='fields'><div class='row2'><div class='field'><label>Nom &amp; prénom</label><input type='text' placeholder='Votre nom' required></div><div class='field'><label>Raison sociale ou dénomination</label><input type='text' placeholder='Nom de votre activité'></div></div><div class='field'><label>Votre secteur</label><select><option>Santé · médical · dentaire · paramédical · vétérinaire</option><option>Profession libérale · avocat · notaire · expert-comptable · architecte</option><option>Commerce · artisanat · restauration · hôtellerie</option><option>Services · PME · agence · conseil · immobilier</option><option>E-commerce · marque · créateur · indépendant</option><option>Industrie · BTP · logistique · transport</option><option>Autre — on en parle</option></select></div><div class='row2'><div class='field'><label>Email professionnel</label><input type='email' placeholder='vous@exemple.fr' required></div><div class='field'><label>Téléphone</label><input type='tel' placeholder='06 00 00 00 00'></div></div><div class='field'><label>Pourquoi vous nous contactez ?</label><select><option>Échange découverte général</option><option>Téléphone &amp; accueil</option><option>Tri &amp; réponse aux mails</option><option>Réseaux sociaux &amp; contenu</option><option>Gestion opérationnelle (stock, devis, relances)</option><option>Tri courriers</option><option>Voir un agent en démo (Cabinet Dentaire de Volx)</option><option>Autre besoin sur-mesure</option></select></div><div class='field'><label>Votre message (optionnel)</label><textarea placeholder='Dites-nous ce qui vous prend du temps…'></textarea></div><button type='submit' class='submit'>Envoyer la demande</button><p class='rgpd'>Les informations transmises sont utilisées uniquement pour vous recontacter. Aucun usage commercial tiers. Conformité RGPD.</p></div><div class='ok'><strong>Merci !</strong> Votre demande est bien notée — on vous recontacte dans la journée. <em>(Formulaire de démonstration : non connecté.)</em></div></form>";
+  var contactBtn=document.getElementById('contactBtn');
+  if(contactBtn){
+    contactBtn.addEventListener('click',function(){
+      var r=contactBtn.getBoundingClientRect();
+      topic.style.setProperty('--cx',(r.left+r.width/2)+'px');
+      topic.style.setProperty('--cy',(r.top+r.height/2)+'px');
+      tNum.textContent='';
+      tTitle.innerHTML="Contactez-<span class='accent'>nous</span>";
+      tBody.innerHTML=CONTACT_FORM;
+      topic.scrollTop=0;
+      requestAnimationFrame(function(){ topic.classList.add('open'); });
+      document.body.style.overflow='hidden';
+    });
+  }
+
+  function closeTopic(){ topic.classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('topicBack').addEventListener('click',closeTopic);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeTopic(); });
 </script>
-
 </body>
 </html>
