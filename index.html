@@ -252,6 +252,7 @@
   .topic-num{ color:var(--violet); font-weight:700; letter-spacing:3px; font-size:13px; font-family:var(--font-accroche); }
   .topic-title{ display:flex; align-items:center; gap:16px; font-size:clamp(28px,4.6vw,54px); font-weight:800; letter-spacing:-1.5px; margin:10px 0 22px; line-height:1.06; }
   .topic-title .accent{ color:var(--violet); font-family:var(--font-title); font-style:italic; font-weight:600; }
+  .topic-title .hi-vio{ color:var(--violet); }
   .topic-title::before{ content:""; flex:none; width:14px; height:14px; border-radius:50%;
     background:var(--fluo); box-shadow:0 0 10px var(--fluo), 0 0 20px var(--fluo);
     animation:dot-pulse 1.4s ease-in-out infinite; }
@@ -659,7 +660,7 @@
   };
 
   var TITLES={
-    '01':"Qui est <span class='accent'>Sol·IA</span>",
+    '01':"Qui est Sol<span class='hi-vio'>·IA</span>",
     '02':"Comment ça <span class='accent'>marche</span>",
     '03':"Pour <span class='accent'>qui</span>",
     '04':"Réalisations <span class='accent'>possibles</span>",
