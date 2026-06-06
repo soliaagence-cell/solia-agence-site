@@ -107,6 +107,7 @@
   @keyframes bob{0%,100%{transform:translateY(0) rotate(45deg);}50%{transform:translateY(7px) rotate(45deg);}}
 
   #zoom-zone{height:220vh;}
+  @media(max-width:760px){ #zoom-zone{height:150vh;} }
 
   /* ---------- CONTENU ---------- */
   #content{position:relative; z-index:10; background:var(--noir);}
@@ -136,6 +137,7 @@
   }
   .qsolia h2 .accent, .contact-section h2 .accent, .tarif-lead .accent{
     color:var(--violet); font-family:var(--font-title); font-style:italic; font-weight:600; }
+  .qsolia h2 .hi-vio{ color:var(--violet); }
   .qsolia .lead{
     text-align:center; color:var(--lavande); max-width:50ch; margin:0 auto;
     font-size:clamp(13px,1.4vw,16px); line-height:1.6;
@@ -485,7 +487,7 @@
     <section class="qsolia" id="qsolia">
       <canvas class="field" id="field"></canvas>
       <p class="section-eyebrow">Choisissez votre sujet</p>
-      <h2>Explorez <span class="accent">Sol·IA</span></h2>
+      <h2>Explorez Sol<span class="hi-vio">·IA</span></h2>
 
       <div class="nstage">
         <div class="orbit" id="constel">
@@ -560,18 +562,27 @@
   var scrollHint=document.getElementById('scrollHint');
   var topbar=document.getElementById('topbar');
 
+  var MQ=window.matchMedia('(max-width:760px)');
+  var IS_MOBILE=MQ.matches;
+  if(MQ.addEventListener) MQ.addEventListener('change',function(e){ IS_MOBILE=e.matches; });
   var MAX_SCALE=14;
   function clamp(v,a,b){return Math.min(b,Math.max(a,v));}
 
   function update(){
-    var zoneH=window.innerHeight*2.2;
+    var zoneH=window.innerHeight*(IS_MOBILE?1.5:2.2);
     var p=clamp(window.scrollY/zoneH,0,1);
 
     var scale=1+Math.pow(p,1.6)*(MAX_SCALE-1);
-    var st=logo.parentElement;
-    var base=st.clientWidth||st.getBoundingClientRect().width||320;
-    var sz=(base*scale).toFixed(1);
-    logo.style.width=sz+'px'; logo.style.height=sz+'px';
+    if(IS_MOBILE){
+      logo.style.width='100%'; logo.style.height='100%';
+      logo.style.transform='translate(-50%,-50%) scale('+scale.toFixed(3)+')';
+    } else {
+      logo.style.transform='translate(-50%,-50%)';
+      var st=logo.parentElement;
+      var base=st.clientWidth||st.getBoundingClientRect().width||320;
+      var sz=(base*scale).toFixed(1);
+      logo.style.width=sz+'px'; logo.style.height=sz+'px';
+    }
 
     var haloFade=clamp(1-p/0.5,0,1);
     halo.style.opacity=haloFade;
@@ -598,12 +609,16 @@
   /* ====== Champ de particules (page 2) ====== */
   var cv=document.getElementById('field');
   if(cv){
-    var cx2=cv.getContext('2d'), CW=1, CH=1, parts=[], mp={x:-999,y:-999};
+    var cx2=cv.getContext('2d'), CW=1, CH=1, parts=[], mp={x:-999,y:-999}, pvis=false;
     function csize(){ var r=cv.getBoundingClientRect(); CW=cv.width=Math.max(1,Math.round(r.width)); CH=cv.height=Math.max(1,Math.round(r.height)); }
     csize(); window.addEventListener('resize',csize);
     window.addEventListener('mousemove',function(e){ var r=cv.getBoundingClientRect(); mp.x=e.clientX-r.left; mp.y=e.clientY-r.top; });
-    for(var k=0;k<70;k++){ parts.push({x:Math.random()*CW,y:Math.random()*CH,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}); }
+    var PN=IS_MOBILE?32:70;
+    for(var k=0;k<PN;k++){ parts.push({x:Math.random()*CW,y:Math.random()*CH,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}); }
+    var pio=new IntersectionObserver(function(es){ pvis=es[0].isIntersecting; },{threshold:0.02});
+    pio.observe(cv);
     function ptick(){
+      if(!pvis){ requestAnimationFrame(ptick); return; }
       cx2.clearRect(0,0,CW,CH);
       for(var i=0;i<parts.length;i++){
         var p=parts[i]; p.x+=p.vx; p.y+=p.vy;
