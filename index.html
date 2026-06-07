@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%2309090F%27/%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%2720%27%20fill%3D%27none%27%20stroke%3D%27%238B5CF6%27%20stroke-width%3D%274%27/%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%276%27%20fill%3D%27%238B5CF6%27/%3E%3C/svg%3E">
 <title>Sol·IA — L'agence qui construit vos agents IA sur-mesure</title>
 <meta name="description" content="Sol·IA conçoit, avec vous, l'agent IA sur-mesure qui prend en charge la tâche qui vous prend le plus de temps : téléphone, mails, réseaux sociaux, stock, courriers. Tous secteurs, tous métiers.">
 <meta name="theme-color" content="#09090F">
@@ -172,6 +173,10 @@
   .closing-contact a{ display:inline-flex; align-items:center; gap:9px; color:var(--lavande); text-decoration:none; font-size:14px; transition:color .25s; }
   .closing-contact a:hover{ color:var(--blanc); }
   .closing-contact .ig{ width:20px; height:20px; color:var(--violet); flex:none; }
+  .legal-links{ margin-top:16px; display:flex; flex-wrap:wrap; gap:6px 12px; justify-content:center; align-items:center; }
+  .legal-links .legal-open{ background:none; border:0; color:var(--lavande); opacity:.7; cursor:pointer; font-size:12.5px; font-family:var(--font-accroche); letter-spacing:.5px; padding:0; text-decoration:underline; text-underline-offset:3px; transition:color .25s, opacity .25s; }
+  .legal-links .legal-open:hover{ color:var(--blanc); opacity:1; }
+  .legal-links .sep{ color:var(--lavande); opacity:.4; }
   .cta-contact{ display:flex; width:fit-content; margin:4px auto 0; align-items:center; gap:12px; cursor:pointer;
     background:linear-gradient(135deg, rgba(139,92,246,0.95), rgba(96,48,220,0.95)); color:#fff; border:0;
     border-radius:30px; padding:16px 34px; font-size:clamp(15px,1.7vw,18px); font-weight:700; font-family:var(--font);
@@ -558,6 +563,11 @@
           @sol.ia.agence
         </a>
       </div>
+      <div class="legal-links">
+        <button class="legal-open" data-doc="mentions">Mentions légales</button>
+        <span class="sep">·</span>
+        <button class="legal-open" data-doc="privacy">Politique de confidentialité</button>
+      </div>
     </footer>
   </div>
 
@@ -767,6 +777,23 @@
       document.body.style.overflow='hidden';
     });
   }
+
+  /* ====== Mentions légales / Politique de confidentialité (overlay) ====== */
+  var LEGAL={
+    mentions:{ t:"Mentions légales", h:"<p><strong>Éditeur du site</strong><br>Sol·IA — micro-entreprise · Victorine GRIFFANTI<br>SIRET 103 392 999 00019 · 2 place des Félibres, 04130 Volx, France<br>TVA non applicable, art. 293 B du CGI.<br>Contact : <a href='mailto:sol.ia.agence@gmail.com'>sol.ia.agence@gmail.com</a></p><p><strong>Directrice de la publication</strong><br>Victorine GRIFFANTI.</p><p><strong>Hébergement</strong><br>Vercel Inc. — 340 S Lemon Ave #4133, Walnut, CA 91789, USA — vercel.com</p><p><strong>Propriété intellectuelle</strong><br>L'ensemble des contenus de ce site (textes, logo Sol·IA, éléments graphiques) est la propriété de Sol·IA, sauf mention contraire. Toute reproduction sans autorisation est interdite.</p>" },
+    privacy:{ t:"Politique de confidentialité", h:"<p>Sol·IA attache une grande importance à la protection de vos données personnelles, conformément au RGPD.</p><p><strong>Données collectées</strong><br>Via le formulaire de contact : nom, raison sociale, email, téléphone, secteur et message. Ces informations sont utilisées <strong>uniquement pour vous recontacter</strong> — aucun usage commercial tiers, aucune revente.</p><p><strong>Base légale &amp; conservation</strong><br>Traitement fondé sur votre consentement. Données conservées le temps nécessaire au suivi de votre demande, puis supprimées.</p><p><strong>Vos droits</strong><br>Accès, rectification, effacement, opposition : écrivez à <a href='mailto:sol.ia.agence@gmail.com'>sol.ia.agence@gmail.com</a>. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><strong>Hébergement &amp; cookies</strong><br>Site hébergé par Vercel. Aucun cookie de suivi publicitaire. La police d'écriture est chargée depuis Google Fonts.</p>" }
+  };
+  document.querySelectorAll('.legal-open').forEach(function(b){
+    b.addEventListener('click',function(){
+      var d=LEGAL[b.dataset.doc]; if(!d) return;
+      var r=b.getBoundingClientRect();
+      topic.style.setProperty('--cx',(r.left+r.width/2)+'px');
+      topic.style.setProperty('--cy',(r.top+r.height/2)+'px');
+      tNum.textContent=''; tTitle.textContent=d.t; tBody.innerHTML=d.h; topic.scrollTop=0;
+      requestAnimationFrame(function(){ topic.classList.add('open'); });
+      document.body.style.overflow='hidden';
+    });
+  });
 
   function closeTopic(){ topic.classList.remove('open'); document.body.style.overflow=''; }
   document.getElementById('topicBack').addEventListener('click',closeTopic);
