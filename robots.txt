@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://solia-agence-site.vercel.app/sitemap.xml
