@@ -119,23 +119,27 @@
   }
 
   .scroll-hint{
-    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
-    z-index:3; text-align:center; color:var(--lavande); font-size:12px;
-    letter-spacing:3px; font-family:var(--font-accroche); will-change:opacity;
-    display:inline-flex; flex-direction:column; align-items:center;
+    position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+    z-index:3; text-align:center; color:var(--lavande);
+    font-family:var(--font-accroche); font-size:12px; letter-spacing:4px;
+    will-change:opacity;
+    display:inline-flex; flex-direction:column; align-items:center; gap:9px;
     cursor:pointer; -webkit-appearance:none; appearance:none;
-    background:rgba(139,92,246,0.10); border:1px solid rgba(139,92,246,0.5);
-    border-radius:24px; padding:12px 22px 10px;
-    transition:background .25s, border-color .25s, color .25s, transform .25s, box-shadow .25s;
+    background:transparent; border:0; border-radius:14px;
+    padding:14px 18px; /* zone tactile confortable (~60px de haut) */
+    text-shadow:0 0 12px rgba(139,92,246,0);
+    transition:color .3s ease, text-shadow .3s ease, letter-spacing .3s ease;
   }
-  .scroll-hint:hover{ background:rgba(139,92,246,0.22); border-color:var(--violet); color:var(--blanc);
-    transform:translateX(-50%) translateY(-2px); box-shadow:0 12px 30px -12px rgba(139,92,246,0.9); }
-  .scroll-hint:focus-visible{ outline:2px solid var(--fluo); outline-offset:3px; }
+  .scroll-hint:hover{ color:var(--blanc); text-shadow:0 0 18px rgba(139,92,246,0.85); letter-spacing:5px; }
+  .scroll-hint:focus-visible{ outline:2px solid var(--fluo); outline-offset:4px; }
   .scroll-hint .chev{
-    display:block; margin:9px auto 0; width:16px;height:16px;
+    display:block; width:14px; height:14px;
     border-right:2px solid var(--violet); border-bottom:2px solid var(--violet);
-    transform:rotate(45deg); animation:bob 1.6s ease-in-out infinite;
+    transform:rotate(45deg); animation:bob 1.8s ease-in-out infinite;
+    filter:drop-shadow(0 0 6px rgba(139,92,246,0.55));
+    transition:border-color .3s ease, filter .3s ease;
   }
+  .scroll-hint:hover .chev{ border-color:var(--lavande); filter:drop-shadow(0 0 11px rgba(139,92,246,0.95)); }
   @keyframes bob{0%,100%{transform:translateY(0) rotate(45deg);}50%{transform:translateY(7px) rotate(45deg);}}
 
   #zoom-zone{height:220vh; height:220dvh;}
@@ -872,15 +876,35 @@
     });
   });
 
-  /* ====== Bouton « ENTREZ DANS SOL·IA » : rejoue le zoom via un smooth scroll ====== */
+  /* ====== Bouton « ENTREZ DANS SOL·IA » : rejoue le zoom via un scroll animé lent et cinématographique ======
+     Animation maison (~2,3 s, ease-in-out) pour ralentir UNIQUEMENT le déclenchement au clic.
+     Le scroll manuel n'est pas affecté (il reste piloté par l'utilisateur). */
   var scrollHintBtn=document.getElementById('scrollHint');
+  var enterRAF=null;
+  function stopEnterZoom(){
+    if(enterRAF){ cancelAnimationFrame(enterRAF); enterRAF=null; document.documentElement.style.scrollBehavior=''; }
+  }
+  function enterZoom(){
+    var zz=document.getElementById('zoom-zone'); if(!zz) return;
+    var targetY=zz.offsetTop+zz.offsetHeight; /* fin de #zoom-zone = zoom terminé, slide « Explorez Sol·IA » */
+    var startY=window.pageYOffset||document.documentElement.scrollTop||0;
+    var dist=targetY-startY; if(Math.abs(dist)<1) return;
+    var DUR=2300, startT=null;
+    document.documentElement.style.scrollBehavior='auto'; /* on pilote le scroll nous-mêmes (évite le smooth CSS) */
+    function easeInOut(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; } /* easeInOutCubic, doux */
+    function step(ts){
+      if(startT===null) startT=ts;
+      var p=Math.min((ts-startT)/DUR,1);
+      window.scrollTo(0, startY+dist*easeInOut(p));
+      if(p<1){ enterRAF=requestAnimationFrame(step); }
+      else { enterRAF=null; document.documentElement.style.scrollBehavior=''; }
+    }
+    enterRAF=requestAnimationFrame(step);
+  }
   if(scrollHintBtn){
-    scrollHintBtn.addEventListener('click',function(){
-      var zz=document.getElementById('zoom-zone');
-      if(!zz) return;
-      var y=zz.offsetTop+zz.offsetHeight; /* fin de #zoom-zone = zoom terminé, slide « Explorez Sol·IA » */
-      window.scrollTo({top:y,behavior:'smooth'});
-    });
+    scrollHintBtn.addEventListener('click',enterZoom);
+    /* si l'utilisateur reprend la main (molette/tactile) pendant l'animation, on la stoppe */
+    ['wheel','touchstart'].forEach(function(ev){ window.addEventListener(ev,stopEnterZoom,{passive:true}); });
   }
 
   /* ====== Bloc SEO local : repli / dépli (texte conservé dans le DOM pour Google) ====== */
