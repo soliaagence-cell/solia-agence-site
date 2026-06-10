@@ -122,7 +122,15 @@
     position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
     z-index:3; text-align:center; color:var(--lavande); font-size:12px;
     letter-spacing:3px; font-family:var(--font-accroche); will-change:opacity;
+    display:inline-flex; flex-direction:column; align-items:center;
+    cursor:pointer; -webkit-appearance:none; appearance:none;
+    background:rgba(139,92,246,0.10); border:1px solid rgba(139,92,246,0.5);
+    border-radius:24px; padding:12px 22px 10px;
+    transition:background .25s, border-color .25s, color .25s, transform .25s, box-shadow .25s;
   }
+  .scroll-hint:hover{ background:rgba(139,92,246,0.22); border-color:var(--violet); color:var(--blanc);
+    transform:translateX(-50%) translateY(-2px); box-shadow:0 12px 30px -12px rgba(139,92,246,0.9); }
+  .scroll-hint:focus-visible{ outline:2px solid var(--fluo); outline-offset:3px; }
   .scroll-hint .chev{
     display:block; margin:9px auto 0; width:16px;height:16px;
     border-right:2px solid var(--violet); border-bottom:2px solid var(--violet);
@@ -491,10 +499,25 @@
   .local-seo{
     position:relative; z-index:10; max-width:760px; margin:0 auto;
     padding:8px 24px 64px; color:var(--lavande); opacity:.72;
-    font-size:13.5px; line-height:1.7; text-align:left;
+    font-size:13.5px; line-height:1.7; text-align:justify;
   }
   .local-seo p{ margin:0 0 .9em; }
+  .local-seo p:last-child{ margin-bottom:0; }
   .local-seo strong{ color:var(--blanc); font-weight:700; }
+  /* Repli SEO : TOUT le texte reste dans le DOM ; seul le surplus est masqué en CSS, déplié en JS */
+  .local-seo-text{ position:relative; max-height:5.8em; overflow:hidden; transition:max-height .45s ease; }
+  .local-seo-text::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2.6em;
+    background:linear-gradient(rgba(9,9,15,0), var(--noir)); pointer-events:none; transition:opacity .3s; }
+  .local-seo-text.open{ max-height:1600px; }
+  .local-seo-text.open::after{ opacity:0; }
+  .local-seo-toggle{ display:inline-block; margin-top:10px; padding:0; background:none; border:0;
+    color:var(--lavande); cursor:pointer; font-family:var(--font-accroche); font-size:12.5px;
+    letter-spacing:.5px; text-decoration:underline; text-underline-offset:3px; opacity:.85;
+    transition:color .25s, opacity .25s; }
+  .local-seo-toggle:hover{ color:var(--blanc); opacity:1; }
+  .local-seo-toggle:focus-visible{ outline:2px solid var(--fluo); outline-offset:3px; }
+  /* Mobile étroit : hyphénation FR pour éviter les gros trous du justify (html lang="fr") */
+  @media(max-width:480px){ .local-seo{ -webkit-hyphens:auto; hyphens:auto; } }
 </style>
 </head>
 <body>
@@ -536,10 +559,10 @@
       <p class="phrase">L'agence qui construit, avec vous,<br>vos agents IA <span class="accent">sur-mesure</span>.</p>
     </div>
 
-    <div class="scroll-hint" id="scrollHint">
+    <button class="scroll-hint" id="scrollHint" type="button" aria-label="Entrer dans Sol·IA : lancer l'animation et passer à la section Explorez Sol·IA">
       ENTREZ DANS SOL·IA
-      <span class="chev"></span>
-    </div>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
   </section>
 
   <div id="zoom-zone"></div>
@@ -599,9 +622,12 @@
     </section>
 
     <section class="local-seo">
-      <p>Basés en Provence, dans les Alpes-de-Haute-Provence, nous accompagnons les entreprises, artisans, commerçants et professions libérales de Manosque, Volx, Forcalquier, Oraison et de toute la région PACA. Notre métier : concevoir avec vous l'agent IA qui prend en charge la tâche qui vous prend le plus de temps.</p>
-      <p>Accueil téléphonique géré par une assistante IA, traitement des mails, publication sur les réseaux sociaux, suivi du stock, rédaction de courriers : on automatise ce qui vous fait perdre du temps, sans changer votre façon de travailler. Chaque agent est construit sur-mesure, pour votre activité, votre vocabulaire et vos horaires.</p>
-      <p>Tous secteurs, tous métiers. Un échange suffit pour voir ce qu'on peut vous faire gagner. Parlons-en.</p>
+      <div class="local-seo-text" id="localSeoText">
+        <p>Basés en Provence, dans les Alpes-de-Haute-Provence, nous accompagnons les entreprises, artisans, commerçants et professions libérales de Manosque, Volx, Forcalquier, Oraison et de toute la région PACA. Notre métier : concevoir avec vous l'agent IA qui prend en charge la tâche qui vous prend le plus de temps.</p>
+        <p>Accueil téléphonique géré par une assistante IA, traitement des mails, publication sur les réseaux sociaux, suivi du stock, rédaction de courriers : on automatise ce qui vous fait perdre du temps, sans changer votre façon de travailler. Chaque agent est construit sur-mesure, pour votre activité, votre vocabulaire et vos horaires.</p>
+        <p>Tous secteurs, tous métiers. Un échange suffit pour voir ce qu'on peut vous faire gagner. Parlons-en.</p>
+      </div>
+      <button type="button" class="local-seo-toggle" id="localSeoToggle" aria-expanded="false" aria-controls="localSeoText">+ Lire la suite</button>
     </section>
 
     <footer class="closing">
@@ -845,6 +871,28 @@
       document.body.style.overflow='hidden';
     });
   });
+
+  /* ====== Bouton « ENTREZ DANS SOL·IA » : rejoue le zoom via un smooth scroll ====== */
+  var scrollHintBtn=document.getElementById('scrollHint');
+  if(scrollHintBtn){
+    scrollHintBtn.addEventListener('click',function(){
+      var zz=document.getElementById('zoom-zone');
+      if(!zz) return;
+      var y=zz.offsetTop+zz.offsetHeight; /* fin de #zoom-zone = zoom terminé, slide « Explorez Sol·IA » */
+      window.scrollTo({top:y,behavior:'smooth'});
+    });
+  }
+
+  /* ====== Bloc SEO local : repli / dépli (texte conservé dans le DOM pour Google) ====== */
+  var lsToggle=document.getElementById('localSeoToggle');
+  var lsText=document.getElementById('localSeoText');
+  if(lsToggle&&lsText){
+    lsToggle.addEventListener('click',function(){
+      var open=lsText.classList.toggle('open');
+      lsToggle.setAttribute('aria-expanded',open?'true':'false');
+      lsToggle.textContent=open?'– Réduire':'+ Lire la suite';
+    });
+  }
 
   function closeTopic(){ topic.classList.remove('open'); document.body.style.overflow=''; }
   document.getElementById('topicBack').addEventListener('click',closeTopic);
