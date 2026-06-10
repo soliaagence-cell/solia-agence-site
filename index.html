@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%2309090F%27/%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%2720%27%20fill%3D%27none%27%20stroke%3D%27%238B5CF6%27%20stroke-width%3D%274%27/%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%276%27%20fill%3D%27%238B5CF6%27/%3E%3C/svg%3E">
-<title>Sol·IA — L'agence qui construit vos agents IA sur-mesure</title>
-<meta name="description" content="Sol·IA conçoit, avec vous, l'agent IA sur-mesure qui prend en charge la tâche qui vous prend le plus de temps : téléphone, mails, réseaux sociaux, stock, courriers. Tous secteurs, tous métiers.">
+<title>Sol·IA — Agence d'agents IA sur-mesure · PACA</title>
+<meta name="description" content="Sol·IA, agence basée en PACA (Alpes-de-Haute-Provence), conçoit avec vous l'agent IA sur-mesure qui prend en charge la tâche qui vous prend le plus de temps : téléphone, mails, réseaux sociaux, stock, courriers. Tous secteurs, tous métiers.">
 <meta name="theme-color" content="#09090F">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sol·IA — L'agence qui construit vos agents IA sur-mesure">
@@ -26,7 +26,7 @@
   <meta name="twitter:description" content="On construit avec vous l'agent IA qui allège votre quotidien. Tous secteurs, tous métiers.">
   <meta name="twitter:image" content="https://solia-agence.fr/og-image-solia.png">
   <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"ProfessionalService","name":"Sol·IA","description":"Agence IA qui conçoit des agents IA sur-mesure pour automatiser le quotidien des entreprises : accueil téléphonique, messagerie qualifiée, relances, courriers, devis.","url":"https://solia-agence.fr/","logo":"https://solia-agence.fr/og-image-solia.png","image":"https://solia-agence.fr/og-image-solia.png","email":"sol.ia.agence@gmail.com","slogan":"Votre quotidien, enfin allégé.","identifier":"SIRET 10339299900019","address":{"@type":"PostalAddress","streetAddress":"2 Place des Félibres","addressLocality":"Volx","postalCode":"04130","addressRegion":"Provence-Alpes-Côte d'Azur","addressCountry":"FR"},"areaServed":"FR","founder":[{"@type":"Person","name":"Victorine Griffanti"},{"@type":"Person","name":"Johann"}],"sameAs":["https://www.instagram.com/sol.ia.agence"]}
+    {"@context":"https://schema.org","@type":"ProfessionalService","name":"Sol·IA","description":"Agence IA basée en PACA (Alpes-de-Haute-Provence) qui conçoit des agents IA sur-mesure pour automatiser le quotidien des entreprises : accueil téléphonique, messagerie qualifiée, relances, courriers, devis.","url":"https://solia-agence.fr/","logo":"https://solia-agence.fr/og-image-solia.png","image":"https://solia-agence.fr/og-image-solia.png","email":"sol.ia.agence@gmail.com","slogan":"Votre quotidien, enfin allégé.","identifier":"SIRET 10339299900019","address":{"@type":"PostalAddress","addressLocality":"Volx","postalCode":"04130","addressRegion":"Provence-Alpes-Côte d'Azur","addressCountry":"FR"},"areaServed":[{"@type":"City","name":"Manosque"},{"@type":"City","name":"Volx"},{"@type":"City","name":"Forcalquier"},{"@type":"City","name":"Oraison"},{"@type":"AdministrativeArea","name":"Alpes-de-Haute-Provence"},{"@type":"AdministrativeArea","name":"Provence-Alpes-Côte d'Azur"}],"founder":[{"@type":"Person","name":"Victorine Griffanti"},{"@type":"Person","name":"Johann"}],"sameAs":["https://www.instagram.com/sol.ia.agence"]}
   </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -467,6 +467,23 @@
     text-align:center; padding:60px 24px; color:var(--lavande); opacity:.6;
     font-size:13px; letter-spacing:1px; border-top:1px solid var(--bordure);
   }
+
+  /* H1 SEO — discret mais lisible (jamais display:none) */
+  .seo-h1{
+    font-family:var(--font-accroche); font-weight:500;
+    font-size:12px; letter-spacing:1.5px; line-height:1.4;
+    color:var(--lavande); opacity:.78; margin:2px 0 0;
+    max-width:34ch; text-align:center;
+  }
+
+  /* Bloc texte SEO local (pied de page enrichi) */
+  .local-seo{
+    position:relative; z-index:10; max-width:760px; margin:0 auto;
+    padding:8px 24px 64px; color:var(--lavande); opacity:.72;
+    font-size:13.5px; line-height:1.7; text-align:left;
+  }
+  .local-seo p{ margin:0 0 .9em; }
+  .local-seo strong{ color:var(--blanc); font-weight:700; }
 </style>
 </head>
 <body>
@@ -504,6 +521,7 @@
 
     <div class="baseline" id="baseline">
       <span class="eyebrow"><span class="dot"></span>AGENCE IA</span>
+      <h1 class="seo-h1">Sol·IA — votre agent IA sur-mesure, conçu en Provence</h1>
       <p class="phrase">L'agence qui construit, avec vous,<br>vos agents IA <span class="accent">sur-mesure</span>.</p>
     </div>
 
@@ -567,6 +585,13 @@
       <h2>On commence par <span class="accent">se parler</span></h2>
       <p class="lead">Pas de pitch commercial, 30 minutes pour cerner votre activité et identifier les tâches qui vous prennent du temps.</p>
       <button class="cta-contact" id="contactBtn">Contactez-nous <span>→</span></button>
+    </section>
+
+    <section class="local-seo">
+      <p><strong>Sol·IA, l'agence qui construit vos agents IA sur-mesure.</strong></p>
+      <p>Basés en Provence, dans les Alpes-de-Haute-Provence, nous accompagnons les entreprises, artisans, commerçants et professions libérales de Manosque, Volx, Forcalquier, Oraison et de toute la région PACA. Notre métier : concevoir avec vous l'agent IA qui prend en charge la tâche qui vous prend le plus de temps.</p>
+      <p>Accueil téléphonique géré par une assistante IA, traitement des mails, publication sur les réseaux sociaux, suivi du stock, rédaction de courriers : on automatise ce qui vous fait perdre du temps, sans changer votre façon de travailler. Chaque agent est construit sur-mesure, pour votre activité, votre vocabulaire et vos horaires.</p>
+      <p>Tous secteurs, tous métiers. Un échange suffit pour voir ce qu'on peut vous faire gagner. Parlons-en.</p>
     </section>
 
     <footer class="closing">
@@ -796,7 +821,7 @@
 
   /* ====== Mentions légales / Politique de confidentialité (overlay) ====== */
   var LEGAL={
-    mentions:{ t:"Mentions légales", h:"<p><strong>Éditeur du site</strong><br>Sol·IA — micro-entreprise · Victorine GRIFFANTI<br>SIRET 103 392 999 00019 · 2 place des Félibres, 04130 Volx, France<br>TVA non applicable, art. 293 B du CGI.<br>Contact : <a href='mailto:sol.ia.agence@gmail.com'>sol.ia.agence@gmail.com</a></p><p><strong>Directrice de la publication</strong><br>Victorine GRIFFANTI.</p><p><strong>Hébergement</strong><br>Vercel Inc. — 340 S Lemon Ave #4133, Walnut, CA 91789, USA — vercel.com</p><p><strong>Propriété intellectuelle</strong><br>L'ensemble des contenus de ce site (textes, logo Sol·IA, éléments graphiques) est la propriété de Sol·IA, sauf mention contraire. Toute reproduction sans autorisation est interdite.</p>" },
+    mentions:{ t:"Mentions légales", h:"<p><strong>Éditeur du site</strong><br>Sol·IA — micro-entreprise · Victorine GRIFFANTI<br>SIRET 103 392 999 00019 · 04130 Volx, France<br>TVA non applicable, art. 293 B du CGI.<br>Contact : <a href='mailto:sol.ia.agence@gmail.com'>sol.ia.agence@gmail.com</a></p><p><strong>Directrice de la publication</strong><br>Victorine GRIFFANTI.</p><p><strong>Hébergement</strong><br>Vercel Inc. — 340 S Lemon Ave #4133, Walnut, CA 91789, USA — vercel.com</p><p><strong>Propriété intellectuelle</strong><br>L'ensemble des contenus de ce site (textes, logo Sol·IA, éléments graphiques) est la propriété de Sol·IA, sauf mention contraire. Toute reproduction sans autorisation est interdite.</p>" },
     privacy:{ t:"Politique de confidentialité", h:"<p>Sol·IA attache une grande importance à la protection de vos données personnelles, conformément au RGPD.</p><p><strong>Données collectées</strong><br>Via le formulaire de contact : nom, raison sociale, email, téléphone, secteur et message. Ces informations sont utilisées <strong>uniquement pour vous recontacter</strong> — aucun usage commercial tiers, aucune revente.</p><p><strong>Base légale &amp; conservation</strong><br>Traitement fondé sur votre consentement. Données conservées le temps nécessaire au suivi de votre demande, puis supprimées.</p><p><strong>Vos droits</strong><br>Accès, rectification, effacement, opposition : écrivez à <a href='mailto:sol.ia.agence@gmail.com'>sol.ia.agence@gmail.com</a>. Vous pouvez aussi saisir la CNIL (cnil.fr).</p><p><strong>Hébergement &amp; cookies</strong><br>Site hébergé par Vercel. Aucun cookie de suivi publicitaire. La police d'écriture est chargée depuis Google Fonts.</p>" }
   };
   document.querySelectorAll('.legal-open').forEach(function(b){
