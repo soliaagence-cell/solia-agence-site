@@ -418,6 +418,9 @@
     background:rgba(43,255,136,0.08); color:var(--blanc); }
   .cform.sent .ok{ display:block; }
   .cform.sent .fields{ display:none; }
+  .cform .cform-error{ display:none; margin:4px 0 0; padding:13px 16px; border:1px solid rgba(239,68,68,0.55);
+    border-radius:12px; background:rgba(239,68,68,0.10); color:#fecaca; font-size:13px; line-height:1.5; }
+  .cform.error .cform-error{ display:block; }
 
   /* ----- Tarifs : reproduction exacte du site ----- */
   .tarif-lead{ font-size:clamp(19px,2.3vw,26px); font-weight:800; color:var(--blanc); letter-spacing:-.4px; line-height:1.25; margin-bottom:14px; }
@@ -837,16 +840,45 @@
     demoTimers.push(setTimeout(function(){ banner.classList.remove('on'); },t+2400));
   });
 
-  /* ====== Formulaire de contact (démo) ====== */
+  /* ====== Formulaire de contact -> Formsubmit.co (AJAX, sans compte) ====== */
+  var FORM_ENDPOINT='https://formsubmit.co/ajax/sol.ia.agence@gmail.com';
   document.addEventListener('submit',function(e){
     var form=e.target.closest ? e.target.closest('.cform') : null;
     if(!form) return;
     e.preventDefault();
-    form.classList.add('sent');
+    /* honeypot rempli => robot : on ignore silencieusement */
+    var honey=form.querySelector('[name="_honey"]');
+    if(honey && honey.value){ return; }
+    var btn=form.querySelector('.submit');
+    var prevLabel=btn?btn.textContent:'';
+    if(btn){ btn.disabled=true; btn.textContent='Envoi…'; }
+    form.classList.remove('error');
+    /* corps JSON : champs du formulaire + champs spéciaux Formsubmit */
+    var payload={ _subject:'Nouvelle demande depuis solia-agence.fr', _template:'table', _captcha:'false', _honey:'' };
+    form.querySelectorAll('input[name],select[name],textarea[name]').forEach(function(el){
+      if(el.name && el.name.charAt(0)!=='_'){ payload[el.name]=el.value; }
+    });
+    fetch(FORM_ENDPOINT,{
+      method:'POST',
+      headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+      body:JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return { ok:r.ok, d:d }; }); })
+    .then(function(res){
+      var success = res.ok && (res.d.success===true || res.d.success==='true');
+      if(success){ form.classList.add('sent'); }
+      else { throw new Error(res.d && res.d.message ? res.d.message : 'send_failed'); }
+    })
+    .catch(function(){
+      if(btn){ btn.disabled=false; btn.textContent=prevLabel||'Envoyer la demande'; }
+      var err=form.querySelector('.cform-error');
+      if(err){ err.textContent="Oups, l'envoi n'a pas pu aboutir. Réessayez dans un instant, ou écrivez-nous directement à sol.ia.agence@gmail.com."; }
+      form.classList.add('error');
+    });
   });
 
   /* ====== Bouton « Contactez-nous » -> formulaire en overlay ====== */
-  var CONTACT_FORM="<form class='cform'><div class='fields'><div class='row2'><div class='field'><label>Nom &amp; prénom</label><input type='text' placeholder='Votre nom' required></div><div class='field'><label>Raison sociale ou dénomination</label><input type='text' placeholder='Nom de votre activité'></div></div><div class='field'><label>Votre secteur</label><select><option>Santé · médical · dentaire · paramédical · vétérinaire</option><option>Profession libérale · avocat · notaire · expert-comptable · architecte</option><option>Commerce · artisanat · restauration · hôtellerie</option><option>Services · PME · agence · conseil · immobilier</option><option>E-commerce · marque · créateur · indépendant</option><option>Industrie · BTP · logistique · transport</option><option>Autre — on en parle</option></select></div><div class='row2'><div class='field'><label>Email professionnel</label><input type='email' placeholder='vous@exemple.fr' required></div><div class='field'><label>Téléphone</label><input type='tel' placeholder='06 00 00 00 00'></div></div><div class='field'><label>Pourquoi vous nous contactez ?</label><select><option>Échange découverte général</option><option>Téléphone &amp; accueil</option><option>Tri &amp; réponse aux mails</option><option>Réseaux sociaux &amp; contenu</option><option>Gestion opérationnelle (stock, devis, relances)</option><option>Tri courriers</option><option>Voir un agent en démo (Cabinet Dentaire de Volx)</option><option>Autre besoin sur-mesure</option></select></div><div class='field'><label>Votre message (optionnel)</label><textarea placeholder='Dites-nous ce qui vous prend du temps…'></textarea></div><button type='submit' class='submit'>Envoyer la demande</button><p class='rgpd'>Les informations transmises sont utilisées uniquement pour vous recontacter. Aucun usage commercial tiers. Conformité RGPD.</p></div><div class='ok'><strong>Merci !</strong> Votre demande est bien notée — on vous recontacte dans la journée. <em>(Formulaire de démonstration : non connecté.)</em></div></form>";
+  var CONTACT_FORM="<form class='cform'><div class='fields'><div class='row2'><div class='field'><label>Nom &amp; prénom</label><input type='text' name='Nom' placeholder='Votre nom' required></div><div class='field'><label>Raison sociale ou dénomination</label><input type='text' name='Raison sociale' placeholder='Nom de votre activité'></div></div><div class='field'><label>Votre secteur</label><select name='Secteur'><option>Santé · médical · dentaire · paramédical · vétérinaire</option><option>Profession libérale · avocat · notaire · expert-comptable · architecte</option><option>Commerce · artisanat · restauration · hôtellerie</option><option>Services · PME · agence · conseil · immobilier</option><option>E-commerce · marque · créateur · indépendant</option><option>Industrie · BTP · logistique · transport</option><option>Autre — on en parle</option></select></div><div class='row2'><div class='field'><label>Email professionnel</label><input type='email' name='Email' placeholder='vous@exemple.fr' required></div><div class='field'><label>Téléphone</label><input type='tel' name='Téléphone' placeholder='06 00 00 00 00'></div></div><div class='field'><label>Pourquoi vous nous contactez ?</label><select name='Motif'><option>Échange découverte général</option><option>Téléphone &amp; accueil</option><option>Tri &amp; réponse aux mails</option><option>Réseaux sociaux &amp; contenu</option><option>Gestion opérationnelle (stock, devis, relances)</option><option>Tri courriers</option><option>Voir un agent en démo (Cabinet Dentaire de Volx)</option><option>Autre besoin sur-mesure</option></select></div><div class='field'><label>Votre message (optionnel)</label><textarea name='Message' placeholder='Dites-nous ce qui vous prend du temps…'></textarea></div><input type='text' name='_honey' tabindex='-1' autocomplete='off' aria-hidden='true' style='position:absolute;left:-9999px;width:1px;height:1px;opacity:0'><button type='submit' class='submit'>Envoyer la demande</button><p class='rgpd'>Les informations transmises sont utilisées uniquement pour vous recontacter. Aucun usage commercial tiers. Conformité RGPD.</p><p class='cform-error' role='alert' aria-live='polite'></p></div><div class='ok'><strong>Merci !</strong> Votre demande est bien notée — on vous recontacte dans la journée.</div></form>";
   var contactBtn=document.getElementById('contactBtn');
   if(contactBtn){
     contactBtn.addEventListener('click',function(){
