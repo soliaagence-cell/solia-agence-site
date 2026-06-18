@@ -589,6 +589,19 @@
   .local-seo-toggle:focus-visible{ outline:2px solid var(--fluo); outline-offset:3px; }
   /* Mobile étroit : hyphénation FR pour éviter les gros trous du justify (html lang="fr") */
   @media(max-width:480px){ .local-seo{ -webkit-hyphens:auto; hyphens:auto; } }
+
+  /* ===== Surcouche d'animations — additive, ne change ni la mise en page
+     ni le contenu. Compositing propice + repli mouvement réduit. ===== */
+  #logo svg circle, #logo svg text{ will-change:transform, opacity; }
+  .enode .lbl, .cta-contact, .demo-btn, .cform .submit, .topic-back, .call-back{ will-change:transform; }
+  @media(prefers-reduced-motion:reduce){ #logo svg circle, #logo svg text, .enode .lbl{ will-change:auto; } }
+  /* Halo lumineux qui suit le curseur (créé en JS, ordinateur uniquement) */
+  #cursor-halo{
+    position:fixed; top:0; left:0; width:460px; height:460px; margin:-230px 0 0 -230px;
+    border-radius:50%; z-index:60; pointer-events:none; opacity:0; will-change:transform;
+    background:radial-gradient(circle, rgba(139,92,246,0.22), rgba(139,92,246,0.08) 42%, transparent 70%);
+    mix-blend-mode:screen;
+  }
 </style>
 </head>
 <body>
@@ -1017,6 +1030,140 @@
   function closeTopic(){ topic.classList.remove('open'); document.body.style.overflow=''; }
   document.getElementById('topicBack').addEventListener('click',closeTopic);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeTopic(); });
+</script>
+
+<!-- ============================================================
+     SURCOUCHE D'ANIMATIONS
+     Même mise en page, même contenu : on n'améliore QUE les animations
+     (logo qui se dessine, orbe, qualité des clics, halo curseur desktop).
+     GSAP 3.13 + ScrollTrigger + DrawSVG + SplitText (gratuits, cdnjs).
+     100% additif : si ça ne charge pas, le site reste identique.
+     ============================================================ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/DrawSVGPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script>
+(function(){
+  if(!window.gsap){ return; } /* repli total : le site marche tel quel */
+  gsap.registerPlugin(ScrollTrigger);
+  if(window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
+  if(window.SplitText) gsap.registerPlugin(SplitText);
+
+  gsap.context(function(){
+    var mm = gsap.matchMedia();
+
+    /* En mouvement réduit : on ne touche à rien (logo + contenu déjà visibles). */
+    mm.add('(prefers-reduced-motion: no-preference)', function(){
+      var split = null;
+
+      /* ================= HÉRO : LE LOGO SE CRÉE ================= */
+      var svg = document.querySelector('#logo svg');
+      if(svg){
+        var glowFill  = svg.querySelector('circle[r="220"]');          /* halo radial interne */
+        var ringBlur  = svg.querySelector('circle[stroke-width="4"]'); /* anneau diffus */
+        var ringCrisp = svg.querySelector('circle[stroke-width="2.5"]');/* anneau net */
+        var innerFill = svg.querySelector('circle[r="193"]');          /* disque interne */
+        var txt       = svg.querySelector('text');                     /* « Sol·IA » */
+        var rings     = [ringBlur, ringCrisp].filter(Boolean);
+
+        /* états initiaux (posés seulement si GSAP tourne -> sans JS, logo visible) */
+        gsap.set([glowFill, innerFill], { autoAlpha:0, scale:0.55, transformOrigin:'50% 50%' });
+        gsap.set(txt, { autoAlpha:0, scale:0.8, transformOrigin:'50% 50%' });
+        if(window.DrawSVGPlugin) gsap.set(rings, { drawSVG:'50% 50%' });
+
+        var tl = gsap.timeline({ delay:0.15, defaults:{ ease:'power3.out' } });
+        /* 1) l'orbe s'allume */
+        tl.to(glowFill, { autoAlpha:1, scale:1, duration:1.0, ease:'power2.out' })
+          .to(innerFill, { autoAlpha:1, scale:1, duration:0.8 }, '-=0.85');
+        /* 2) les anneaux se tracent depuis le centre (effet « se dessine ») */
+        if(window.DrawSVGPlugin){
+          tl.to(rings, { drawSVG:'0% 100%', duration:1.25, ease:'power2.inOut', stagger:0.14 }, '-=0.7');
+        } else {
+          tl.from(rings, { autoAlpha:0, duration:0.7 }, '-=0.7');
+        }
+        /* 3) le nom apparaît */
+        tl.to(txt, { autoAlpha:1, scale:1, duration:0.75, ease:'back.out(1.7)' }, '-=0.45');
+
+        /* ORBE VIVANT : pulsation douce de la lumière interne + scintillement de l'anneau.
+           (interne au SVG -> n'interfère pas avec le zoom au scroll piloté par update()) */
+        gsap.to(glowFill, { scale:1.06, transformOrigin:'50% 50%', duration:2.8, ease:'sine.inOut', yoyo:true, repeat:-1, delay:1.7 });
+        if(ringBlur) gsap.to(ringBlur, { attr:{ 'stroke-opacity':0.75 }, duration:2.4, ease:'sine.inOut', yoyo:true, repeat:-1, delay:1.7 });
+      }
+
+      /* ================= HÉRO : BASELINE EN CASCADE ================= */
+      /* On anime les ENFANTS de #baseline (pas #baseline lui-même, dont l'opacité
+         est pilotée par update() au scroll) -> aucun conflit. */
+      var phrase = document.querySelector('#baseline .phrase');
+      var tlb = gsap.timeline({ delay:0.85, defaults:{ ease:'power3.out' } });
+      tlb.from('#baseline .eyebrow', { autoAlpha:0, y:14, duration:0.6 });
+      if(window.SplitText && phrase){
+        split = new SplitText(phrase, { type:'words', mask:'words' });
+        tlb.from(split.words, { yPercent:115, autoAlpha:0, duration:0.7, stagger:0.06, ease:'power4.out' }, '-=0.2');
+      } else if(phrase){
+        tlb.from(phrase, { autoAlpha:0, y:16, duration:0.6 }, '-=0.2');
+      }
+      /* scroll-hint : autoAlpha SEUL (il est centré via translateX(-50%) -> pas de transform) */
+      tlb.from('#scrollHint', { autoAlpha:0, duration:0.7 }, '-=0.05');
+
+      /* ================= QUALITÉ DES CLICS ================= */
+      /* a) Sujets de la constellation : survol vivant + clic « pressé » sur le label
+            (on anime .lbl, jamais le nœud centré -> position inchangée). */
+      gsap.utils.toArray('.enode').forEach(function(node){
+        var lbl = node.querySelector('.lbl'); if(!lbl) return;
+        var qs = gsap.quickTo(lbl, 'scale', { duration:0.3, ease:'power3' });
+        var qy = gsap.quickTo(lbl, 'y',     { duration:0.3, ease:'power3' });
+        node.addEventListener('mouseenter', function(){ qs(1.07); qy(-3); });
+        node.addEventListener('mouseleave', function(){ qs(1);    qy(0);  });
+        node.addEventListener('pointerdown', function(){ gsap.to(lbl, { scale:0.92, duration:0.1, ease:'power2.out' }); });
+        node.addEventListener('pointerup',   function(){ gsap.to(lbl, { scale:1.07, duration:0.3, ease:'back.out(3)' }); });
+      });
+
+      /* b) Boutons : effet « pressé » tactile, puis on rend la main au CSS (hover, etc.). */
+      function press(el){
+        el.addEventListener('pointerdown', function(){ gsap.to(el, { scale:0.95, duration:0.1, ease:'power2.out' }); });
+        ['pointerup','pointerleave'].forEach(function(ev){
+          el.addEventListener(ev, function(){ gsap.to(el, { scale:1, duration:0.35, ease:'back.out(2.5)',
+            onComplete:function(){ gsap.set(el, { clearProps:'transform' }); } }); });
+        });
+      }
+      gsap.utils.toArray('.cta-contact, .demo-btn, .cform .submit, .topic-back, .call-back, .legal-open').forEach(press);
+
+      /* nettoyage de la branche (revert SplitText au changement de média) */
+      return function(){ if(split){ split.revert(); } };
+    });
+
+    /* ================= HALO LUMINEUX QUI SUIT LE CURSEUR (ordinateur) ================= */
+    mm.add('(pointer:fine) and (min-width:769px) and (prefers-reduced-motion: no-preference)', function(){
+      var halo = document.createElement('div');
+      halo.id = 'cursor-halo'; halo.setAttribute('aria-hidden','true');
+      document.body.appendChild(halo);
+      var qx = gsap.quickTo(halo, 'x', { duration:0.5, ease:'power3' });
+      var qy = gsap.quickTo(halo, 'y', { duration:0.5, ease:'power3' });
+      var shown = false;
+      function move(e){ qx(e.clientX); qy(e.clientY); if(!shown){ shown = true; gsap.to(halo, { opacity:1, duration:0.5 }); } }
+      function leave(){ shown = false; gsap.to(halo, { opacity:0, duration:0.4 }); }
+      var HOT = 'a,button,input,select,textarea,.enode,.node,.scroll-hint,.scroll-cue,.legal-open,.local-seo-toggle';
+      function over(e){ if(e.target.closest && e.target.closest(HOT)){ gsap.to(halo, { scale:1.55, duration:0.4, ease:'power3' }); } }
+      function out(e){ if(e.target.closest && e.target.closest(HOT)){ gsap.to(halo, { scale:1, duration:0.4, ease:'power3' }); } }
+      window.addEventListener('mousemove', move);
+      document.addEventListener('mouseleave', leave);
+      document.addEventListener('mouseover', over);
+      document.addEventListener('mouseout', out);
+      return function(){
+        window.removeEventListener('mousemove', move);
+        document.removeEventListener('mouseleave', leave);
+        document.removeEventListener('mouseover', over);
+        document.removeEventListener('mouseout', out);
+        if(halo.parentNode) halo.parentNode.removeChild(halo);
+      };
+    });
+  });
+
+  /* Recalage ScrollTrigger après chargement des polices / de la fenêtre. */
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ ScrollTrigger.refresh(); }); }
+  window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+})();
 </script>
 </body>
 </html>
