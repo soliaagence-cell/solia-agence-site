@@ -804,7 +804,7 @@
 
   /* ====== Champ de particules (page 2) ====== */
   var cv=document.getElementById('field');
-  if(cv){
+  if(cv && !IS_MOBILE){
     var cx2=cv.getContext('2d'), CW=1, CH=1, parts=[], mp={x:-999,y:-999}, pvis=false;
     function csize(){ var r=cv.getBoundingClientRect(); CW=cv.width=Math.max(1,Math.round(r.width)); CH=cv.height=Math.max(1,Math.round(r.height)); }
     csize(); window.addEventListener('resize',csize);
