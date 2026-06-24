@@ -286,6 +286,7 @@
     padding:100px 24px 70px; visibility:hidden; overflow-y:auto; -webkit-overflow-scrolling:touch;
     clip-path:circle(0% at var(--cx,50%) var(--cy,50%));
     transition:clip-path .7s cubic-bezier(.66,0,.2,1), visibility 0s linear .7s;
+    will-change:clip-path;
   }
   #topic.open{ visibility:visible; clip-path:circle(150% at var(--cx,50%) var(--cy,50%));
     transition:clip-path .7s cubic-bezier(.66,0,.2,1), visibility 0s; }
@@ -801,12 +802,12 @@
     function csize(){ var r=cv.getBoundingClientRect(); CW=cv.width=Math.max(1,Math.round(r.width)); CH=cv.height=Math.max(1,Math.round(r.height)); }
     csize(); window.addEventListener('resize',csize);
     window.addEventListener('mousemove',function(e){ var r=cv.getBoundingClientRect(); mp.x=e.clientX-r.left; mp.y=e.clientY-r.top; });
-    var PN=IS_MOBILE?32:70;
+    var PN=IS_MOBILE?22:45;
     for(var k=0;k<PN;k++){ parts.push({x:Math.random()*CW,y:Math.random()*CH,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}); }
     var pio=new IntersectionObserver(function(es){ pvis=es[0].isIntersecting; },{threshold:0.02});
     pio.observe(cv);
     function ptick(){
-      if(!pvis){ requestAnimationFrame(ptick); return; }
+      if(!pvis || (topic && topic.classList.contains('open'))){ requestAnimationFrame(ptick); return; }
       cx2.clearRect(0,0,CW,CH);
       for(var i=0;i<parts.length;i++){
         var p=parts[i]; p.x+=p.vx; p.y+=p.vy;
@@ -863,7 +864,7 @@
       tTitle.innerHTML=TITLES[node.dataset.num]||node.dataset.title;
       tBody.innerHTML=BODIES[node.dataset.num]||'';
       topic.scrollTop=0;
-      requestAnimationFrame(function(){ topic.classList.add('open'); });
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ topic.classList.add('open'); }); });
       document.body.style.overflow='hidden';
     });
   });
@@ -963,7 +964,7 @@
       tTitle.innerHTML="Contactez-<span class='accent'>nous</span>";
       tBody.innerHTML=CONTACT_FORM;
       topic.scrollTop=0;
-      requestAnimationFrame(function(){ topic.classList.add('open'); });
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ topic.classList.add('open'); }); });
       document.body.style.overflow='hidden';
     });
   }
@@ -980,7 +981,7 @@
       topic.style.setProperty('--cx',(r.left+r.width/2)+'px');
       topic.style.setProperty('--cy',(r.top+r.height/2)+'px');
       tNum.textContent=''; tTitle.textContent=d.t; tBody.innerHTML=d.h; topic.scrollTop=0;
-      requestAnimationFrame(function(){ topic.classList.add('open'); });
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ topic.classList.add('open'); }); });
       document.body.style.overflow='hidden';
     });
   });
