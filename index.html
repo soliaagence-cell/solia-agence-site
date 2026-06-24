@@ -297,6 +297,12 @@
     #topic.open{ clip-path:none; opacity:1;
       transition:opacity .3s ease, visibility 0s; }
   }
+
+  @media (max-width:760px){
+    .halo{ animation:none; }
+    .accent{ animation:none; }
+    #logo svg circle, #logo svg text{ filter:none; }
+  }
   .topic-inner{ width:100%; max-width:760px; opacity:0; transform:translateY(16px);
     transition:opacity .5s ease, transform .5s ease; }
   #topic.open .topic-inner{ opacity:1; transform:none; transition-delay:.35s; }
